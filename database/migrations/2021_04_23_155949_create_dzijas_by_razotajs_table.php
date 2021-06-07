@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLietotajsTable extends Migration
+class CreateDzijasByRazotajsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateLietotajsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lietotajs', function (Blueprint $table) {
+        Schema::create('dzijas_by_razotajs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('dzija_id')->constrained()->nullab();
+            $table->foreignId('razotajs_id')->constrained()->nullable();
         });
     }
 
@@ -26,6 +28,6 @@ class CreateLietotajsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lietotajs');
+        Schema::dropIfExists('dzijas_by_razotajs');
     }
 }

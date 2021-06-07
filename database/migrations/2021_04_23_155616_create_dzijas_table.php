@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIzstradajumsTable extends Migration
+class CreateDzijasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateIzstradajumsTable extends Migration
      */
     public function up()
     {
-        Schema::create('izstradajums', function (Blueprint $table) {
+        Schema::create('dzijas', function (Blueprint $table) {
             $table->id();
-            $table->string('nosaukums');
-            $table->text('apraksts');
-            $table->string('izmers');
-            $table->integer('garums');
-            $table->foreignId('veids_id')->constrained()->nullable();
             $table->timestamps();
+            $table->string('nosaukums');
+            $table->integer('garums');
+            $table->text('apraksts')->nullable();
+            $table->foreignId('razotajs_id')->constrained()->nullable();
         });
     }
 
@@ -31,6 +30,6 @@ class CreateIzstradajumsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('izstradajums');
+        Schema::dropIfExists('dzijas');
     }
 }

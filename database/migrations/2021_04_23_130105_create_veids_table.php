@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAprakstiTable extends Migration
+class CreateVeidsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateAprakstiTable extends Migration
      */
     public function up()
     {
-        Schema::create('apraksti', function (Blueprint $table) {
+        Schema::create('veids', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('nosaukums', 50);
         });
     }
 
@@ -26,6 +27,6 @@ class CreateAprakstiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apraksti');
+        Schema::dropIfExists('veids');
     }
 }

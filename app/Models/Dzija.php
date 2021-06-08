@@ -9,7 +9,7 @@ use App\Models\Razotajs;
 class Dzija extends Model
 {
     use HasFactory;
-    public function razotajs() { 
+    public function razotaji() { 
         return $this->belongsTo(Razotajs::class);
         }
     

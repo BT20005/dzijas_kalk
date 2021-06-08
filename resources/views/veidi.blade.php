@@ -1,8 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Izstrādājumi</title>
-</head><h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Izstādājumu veidi') }}</h2>
+<x-app-layout>
+    <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Izstādājumu veidi') }}</h2>
+    </x-slot>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -13,11 +13,12 @@
                     </p>
                 @endforeach
                 
-                <nav-link :href="route('veids.create')">
+                <x-nav-link :href="route('veids.create')">
                     Izveidot jaunu 
-                <nav-link>
+                </x-nav-link>
                     
                 </div>
             </div>
         </div>
     </div>
+</x-app-layout>

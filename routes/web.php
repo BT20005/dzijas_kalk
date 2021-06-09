@@ -35,8 +35,8 @@ Route::get('/kalkulators', function () {
 });
 Route::resource('veids', VeidsController::class);
 Route::resource('razotajs', RazotajsController::class);
-Route::resource('dzija', DzijaController::class);
-Route::resource('izstradajums', IzstradajumsController::class);
+Route::resource('dzijas', DzijaController::class);
+Route::resource('izstradajumi', IzstradajumsController::class);
 
 
 Route::get('dzijas/filter', [BookController::class, 'showFilter'])->name('dzijas.filter');

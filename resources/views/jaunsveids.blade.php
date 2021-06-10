@@ -17,24 +17,28 @@
             }
         </style>
 </head>
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">Izveidot jaunu izstrādājuma veidu</h2>
-
+<body class="antialiased">
+<div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+    <div>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Izveidot jaunu izstrādājuma veidu.</h2>
+    </div>
     <form method="POST" action="{{ action([App\Http\Controllers\VeidsController::class, 'store']) }}">
         @csrf
 
         <!-- Nosaukums -->
         <div>
-            <x-label for="nosaukums" value="Nosaukums" />
+            <label for="nosaukums" value="Nosaukums">ierakstiet izstrādājuma nosaukumu</label><br>
 
-            <x-input id="nosaukums" class="block mt-1 w-full" type="text" name="nosaukums" required autofocus :value="old(nosaukums)"/>
+            <input id="nosaukums" class="block mt-1 w-full" type="text" name="nosaukums" required autofocus :value="old(nosaukums)"/>
 
-            <x-validation-error class="mb-4" :errors="$errors" title="n"/>          
+            <validation-error class="mb-4" :errors="$errors" title="n"/>          
         </div>
-        <div class="flex items-center justify-end mt-4">
-            <x-button class="ml-4">
+        <div class="flex items-center justify-end mt-4 ">
+            <button class="ml-4">
                 Saglabāt
-            </x-button>
+            </button>
         </div>
     </form>
+    </div>
     </body>
 </html>

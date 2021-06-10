@@ -7,7 +7,8 @@ use App\Http\Controllers\VeidsController;
 use App\Http\Controllers\RazotajsController;
 use App\Http\Controllers\DzijaController;
 use App\Http\Controllers\IzstradajumsController;
-use App\Http\Controllers\KalkulatorsController;
+use App\Http\Controllers\AdminIzstradajumiController;
+use App\Http\Controllers\AdminDzijasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +28,7 @@ require __DIR__.'/auth.php';
 Route::get('/', function () {
     return view('sakums');
 });
+//Route::redirect('/', 'sakums');
 // Route::get('/dzija', function () {
 //     return view('dzija');
 // });
@@ -37,7 +39,11 @@ Route::resource('veids', VeidsController::class);
 Route::resource('razotajs', RazotajsController::class);
 Route::resource('dzijas', DzijaController::class);
 Route::resource('izstradajumi', IzstradajumsController::class);
+Route::resource('adminizstradajumi', AdminIzstradajumiController::class);
+Route::resource('admindzijas', AdminDzijasController::class);
 
+// Route::resource('adminizstradajumi', AdminIzstradajumiController::class, ['except' => ['index', 'create']]);
+// Route::get('adminizstradajumi/veids/{id}', [AdminIzstradajumiController::class, 'index']);
 
 Route::get('dzijas/filter', [BookController::class, 'showFilter'])->name('dzijas.filter');
 Route::post('dzijas/filter', [BookController::class, 'filter']);

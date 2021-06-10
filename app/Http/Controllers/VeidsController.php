@@ -26,7 +26,7 @@ class VeidsController extends Controller
      */
     public function create()
     {
-        return view('veids_create');
+        return view('jaunsveids');
     }
 
     /**
@@ -38,7 +38,7 @@ class VeidsController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'nosaukums' => 'required|string|min:2|max:50|unique:veidi',
+            'nosaukums' => 'required|string|min:2|max:50|unique:veids',
         );        
         $this->validate($request, $rules); 
         
@@ -92,6 +92,8 @@ class VeidsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Izstradajums::where('veids_id',$id)->delete();
+        Veids::findOrFail($id)->delete();
+        return redirect('veids');
     }
 }

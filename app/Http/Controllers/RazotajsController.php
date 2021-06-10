@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Razotajs;
+use App\Models\Dzija;
 use Illuminate\Http\Request;
 
 class RazotajsController extends Controller
@@ -26,11 +27,11 @@ class RazotajsController extends Controller
      */
     public function create()
     {
-        return view('razotajs_create');
+        return view('jaunsrazotajs');
     }
 
     /**
-     * Saglabāt jaunirveidoto ražotāju DB.
+     * Saglabāt jaunizveidoto ražotāju DB.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -38,7 +39,7 @@ class RazotajsController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'nosaukums' => 'required|string|min:2|max:50|unique:razotaji',
+            'nosaukums' => 'required|string|min:2|max:50|unique:razotajs',
         );        
         $this->validate($request, $rules); 
         
@@ -85,13 +86,15 @@ class RazotajsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * izdzēst.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        Dzija::where('razotajs_id',$id)->delete();
+        Razotajs::findOrFail($id)->delete();
+        return redirect('razotajs');
     }
 }

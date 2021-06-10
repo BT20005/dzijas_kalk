@@ -17,24 +17,38 @@
             }
         </style>
 </head>
+<body class="antialiased">
+<div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+    <div>
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Izstādājumu veidi') }}</h2>
+    </div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                 @foreach ( $veidi as $veids )
-                    <p class='text-lg'>
-                        <a href="{{ url('veids', $veids['id']) }}">{{ $veids->nosaukums }}</a>
-                    </p>
+                <table>
+                <tr>
+                    <td class='text-lg'><a href="{{ url('veids', $veids['id']) }}">{{ $veids->nosaukums }}</a></td>
+                    <td><form method="POST" action="{{ action([App\Http\Controllers\VeidsController::class, 'destroy'], $veids->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button>
+                    Izdzēst
+                    </button>
+                    </form></td>
+                </tr>
+                </table>
                 @endforeach
-                
+               
                 <x-nav-link :href="route('veids.create')">
                     Izveidot jaunu 
                 </x-nav-link>
-                    
+            
                 </div>
             </div>
         </div>
     </div>
-    </body>
+</div>
+</body>
 </html>

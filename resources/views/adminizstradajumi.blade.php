@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>RAZOTAJI</title>
+<title>IZSTRADAJUMI</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,17 +20,29 @@
 <body class="antialiased">
 <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
     <div>
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Ražotāji') }}</h2>
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Izstrādājumi') }}</h2>
     </div>  
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                @foreach ( $razotaji as $razotajs )
-                <table>
+                <table class="border border-dark">
                 <tr>
-                    <td class='text-lg'><a href="{{ url('razotajs', $razotajs['id']) }}">{{ $razotajs->nosaukums }}</a></td>
-                    <td><form method="POST" action="{{ action([App\Http\Controllers\RazotajsController::class, 'destroy'], $razotajs->id) }}">
+                    <td> Veids</td>    
+                    <td> Nosaukums</td>
+                    <td> Apraksts </td>
+                    <td> Izmērs </td>
+                    <td> Garums</td>
+                </tr>
+                @foreach ( $izstradajumi as $izstradajums )
+                
+                <tr>
+                    <td class='text-lg'><a href="{{ url('izstradajums', $izstradajums['id']) }}">{{ $izstradajums->veids_id }}</a></td>
+                    <td class='text-lg'><a href="{{ url('izstradajums', $izstradajums['id']) }}">{{ $izstradajums->nosaukums }}</a></td>
+                    <td class='text-lg'><a href="{{ url('izstradajums', $izstradajums['id']) }}">{{ $izstradajums->apraksts }}</a></td>
+                    <td class='text-lg'><a href="{{ url('izstradajums', $izstradajums['id']) }}">{{ $izstradajums->izmers }}</a></td>
+                    <td class='text-lg'><a href="{{ url('izstradajums', $izstradajums['id']) }}">{{ $izstradajums->garums }}</a></td>
+                    <td><form method="POST" action="{{ action([App\Http\Controllers\AdminIzstradajumiController::class, 'destroy'], $izstradajums->id) }}">
                     @csrf
                     @method('DELETE')
                     <button>
@@ -38,10 +50,10 @@
                     </button>
                     </form></td>
                 </tr>
-                </table>
-                @endforeach
                 
-                <x-nav-link :href="route('razotajs.create')">
+                @endforeach
+                </table>
+                <x-nav-link :href="route('adminizstradajumi.create')">
                     Izveidot jaunu 
                 </x-nav-link>
                     

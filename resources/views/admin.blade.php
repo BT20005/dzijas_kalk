@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>DZIJA JAUNA</title>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>DZIJU KALKULATORS</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,56 +19,67 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
-</head>
+    </head>
 <body class="antialiased">
+    
 <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
     <div>
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Izveidot jaunu dziju</h2>
+        
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('ADMINISTRATĪVAIS PANELIS') }}</h2>
+    </div>  
+<div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('razotajs') }}" class="underline text-red-900 dark:text-gray">RAŽOTAJI</a></div>
+                    </div>
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-800  text-m">Lai pievienotu, atjaunotu un dzēstu ražotājus.</div>
+                    </div>
+                </div>
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('veids') }}" class="underline text-red-900 dark:text-gray">VEDI</a></div>
+                    </div>
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-800  text-m">Lai pievienotu, atjaunotu un dzēstu veidus.</div>
+                    </div>
+                </div>
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('admindzijas') }}" class="underline text-red-900 dark:text-gray">DZIJAS</a></div>
+                    </div>
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-800  text-m">Lai pievienotu, atjaunotu un dzēstu dzijas.</div>
+                    </div>
+                </div>        
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('adminizstradajumi') }}" class="underline text-red-900 dark:text-gray">IZSTRĀDĀJUMI</a></div>
+                    </div>
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-800  text-m">Lai pievienotu, atjaunotu un dzēstu ražotājus.</div>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
+            <div class="text-center text-sm text-gray-500 sm:text-left">
+                <div class="flex items-center">
+                    <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="-mt-px w-5 h-5 text-gray-400">
+                    <path></path>
+                    </svg>
+                    <svg fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="ml-4 -mt-px w-5 h-5 text-gray-400">
+                        <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                        BT, IZ
+            </div>
+        </div>        
     </div>
-    <form method="POST" action="{{ action([App\Http\Controllers\DzijaController::class, 'store']) }}">
-        @csrf
-
-        <!--Nosaukums -->
-        <div>
-            <label for="nosaukums" value="Nosaukums" ></label>
-
-            <input id="nosaukums" class="block mt-1 w-full" type="text" name="nosaukums" :value="old('nosaukums')" required autofocus />
-
-            <validation-error class="mb-4" :errors="$errors" title="nosaukums"/>            
-        </div>
-
-        <!-- Garums -->
-        <div>
-            <label for="gaums" value="Garums"></label>
-
-            <input id="garums" class="block mt-1 w-full" type="number" name="garums" :value="old('garums')" required />
-
-            <validation-error class="mb-4" :errors="$errors" title="garums"/>            
-        </div>
-
-        <!-- Apraksts -->
-        <div>
-            <label for="apraksts" value="Apraksts" ></label>
-
-            <textarea id="apraksts" class="block mt-1 w-full" type="text" name="apraksts" :value="old('apraksts')"></textarea>
-
-            <validation-error class="mb-4" :errors="$errors" title="apraksts"/>            
-        </div>
-
-        <!-- Ražotājs -->
-        <div>
-            <label for="razotajs" value="Ražotājs" ></label>
-            
-            <select id="razotajs" class="block mt-1 w-full" name="razotajs" :list='$razotajs' :value="old('razotajs')"></select>
-
-            <validation-error class="mb-4" :errors="$errors" title="razotajs"/>            
-        </div>  
-        <div class="flex items-center justify-end mt-4">
-            <button class="ml-4">
-                Izveidot
-            </button>
-        </div>
-    </form>
 </div>
 </body>
 </html>

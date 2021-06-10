@@ -28,6 +28,9 @@ require __DIR__.'/auth.php';
 Route::get('/', function () {
     return view('sakums');
 });
+Route::get('/admin', function () {
+    return view('admin');
+});
 //Route::redirect('/', 'sakums');
 // Route::get('/dzija', function () {
 //     return view('dzija');
@@ -44,6 +47,9 @@ Route::resource('admindzijas', AdminDzijasController::class);
 
 // Route::resource('adminizstradajumi', AdminIzstradajumiController::class, ['except' => ['index', 'create']]);
 // Route::get('adminizstradajumi/veids/{id}', [AdminIzstradajumiController::class, 'index']);
+
+Route::resource('admindzijas', AdminDzijasController::class, ['except' => ['index', 'create']]);
+Route::get('admindzijas/veids/{id}', [AdminDzijasController::class, 'index']);
 
 Route::get('dzijas/filter', [BookController::class, 'showFilter'])->name('dzijas.filter');
 Route::post('dzijas/filter', [BookController::class, 'filter']);

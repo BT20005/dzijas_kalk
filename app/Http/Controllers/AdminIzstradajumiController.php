@@ -3,12 +3,22 @@
 namespace App\Http\Controllers;
 use App\Models\Izstradajums;
 use App\Models\Veids;
-
+use Illuminate\Support\Facades\Gate;
 
 use Illuminate\Http\Request;
 
 class AdminIzstradajumiController extends Controller
 {
+     public function __construct() {
+       $this->middleware('auth.admin')->only(['edit']);
+       //$this->middleware('auth.admin')->only(['edit', 'create', 'store', 'destroy']);
+        //$this->middleware('auth', ['only'=>'edit']);
+    //only Admins have access to the following methods
+        // $this->middleware('auth.admin')->only(['create', 'store']);
+         // only authenticated users have access to the methods of the controller
+        //$this->middleware('auth');
+     }
+    
     public function index()
     {
         $izstradajumi = Izstradajums::all();
@@ -25,9 +35,25 @@ class AdminIzstradajumiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function edit($id)
+    {
+        if (Gate::allows('is-admin')) {
+            $adminizstradajumi = Dzija::find($id);
+            return view ('edit', compact('adminizstradajumi'));
+        }
+        else {
+            return redirect('dashboard')->withErrors('Access denied');
+        }
+    }
+    
     public function create()
     {
+         if (Gate::allows('is-admin')) {
         return view('jaunsizstradajums');
+        }
+        else {
+            return redirect('dashboard')->withErrors('Access denied');
+        }
     }
     /**
      * Saglabāt jaunizveidoto izstrādājumu DB.
@@ -37,6 +63,7 @@ class AdminIzstradajumiController extends Controller
      */
     public function store(Request $request)
     {
+        if (Gate::allows('is-admin')){
         $rules = array(
             'nosaukums' => 'required|string|min:2|max:50|unique:izstradajums',
             'apraksts' => 'nullable|string',
@@ -55,6 +82,10 @@ class AdminIzstradajumiController extends Controller
         $izstradajums->save();        
         return redirect()->route('izstradajums.index');
     }
+        else {
+            return redirect('dashboard')->withErrors('Access denied');
+        }
+    }
 
     /**
      * izdzēst.
@@ -64,8 +95,13 @@ class AdminIzstradajumiController extends Controller
      */
     public function destroy($id)
     {
+        if (Gate::allows('is-admin')) {
         $veids_id = Izstradajums::findOrFail($id)->veids_id;
         Izstradajums::findOrFail($id)->delete();
         return redirect('adminizstradajumi');
+    }
+    else {
+            return redirect('dashboard')->withErrors('Access denied');
+        }
     }
 }

@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Razotajs;
 use App\Models\Dzija;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class RazotajsController extends Controller
 {
    
-    // public function __construct() {
+    public function __construct() {
+        $this->middleware('auth.admin')->only(['edit']);
+        //$this->middleware('auth.admin')->only(['edit', 'create', 'store']);
     //     // only Admins have access to the following methods
     //     $this->middleware('auth.admin')->only(['create', 'store']);
     //     // only authenticated users have access to the methods of the controller
     //     $this->middleware('auth');
-    // }
+    }
     public function index()
     {
         $razotaji = Razotajs::all();
@@ -70,7 +73,13 @@ class RazotajsController extends Controller
      */
     public function edit($id)
     {
-        //
+         if (Gate::allows('is-admin')) {
+            $razotajs = Razotajs::find($id);
+            return view ('edit', compact('razotajs'));
+        }
+        else {
+            return redirect('dashboard')->withErrors('Access denied');
+        }
     }
 
     /**

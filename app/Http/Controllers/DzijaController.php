@@ -6,19 +6,15 @@ use App\Models\Dzija;
 use App\Models\Razotajs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-//use Illuminate\Support\Facades\Gate;
 
 class DzijaController extends Controller
 {
-    public function __construct() {
-       //$this->middleware('auth.admin')->only(['edit']);
-       //$this->middleware('auth.admin')->only(['edit', 'create', 'store']);
-        //$this->middleware('auth', ['only'=>'edit']);
-    //only Admins have access to the following methods
-        // $this->middleware('auth.admin')->only(['create', 'store']);
-         // only authenticated users have access to the methods of the controller
-        //$this->middleware('auth');
-     }
+    // public function __construct() {
+    //     // only Admins have access to the following methods
+    //     $this->middleware('auth.admin')->only(['create', 'store']);
+    //     // only authenticated users have access to the methods of the controller
+    //     $this->middleware('auth');
+    // }
         
     /**
      * Dziju saraksts.
@@ -49,7 +45,7 @@ class DzijaController extends Controller
      * Saglabāt jaunizveidotās dzijas.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Responses
      */
     public function store(Request $request)
     {
@@ -57,7 +53,7 @@ class DzijaController extends Controller
             'nosaukums' => 'required|string|min:2|max:191',
             'garums' => 'required|digits:4|integer|max:9999',
             'apraksts' => 'nullable|string',
-            'razotajs' => 'required|exists:razotaji,id',
+            'razotajs' => 'required|exists:razotajs_id',
         );        
         $this->validate($request, $rules); 
         
@@ -92,16 +88,10 @@ class DzijaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    //public function edit($id)
-    //{
-    //    if (Gate::allows('is-admin')) {
-    //       $dzija = Dzija::find($id);
-    //       return view ('edit', compact('dzija'));
-    //   }
-    //  else {
-    //       return redirect('dashboard')->withErrors('Access denied');
-    //    }
-    //}
+    public function edit($id)
+    {
+        //
+    }
 
     /**
      * Update the specified resource in storage.

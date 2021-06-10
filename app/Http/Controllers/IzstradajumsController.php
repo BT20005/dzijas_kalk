@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Izstradajums;
+use App\Models\Dzija;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -24,6 +25,7 @@ class IzstradajumsController extends Controller
      */
     public function index()
     {
+        
         $izstradajumi = Izstradajums::orderBy('nosaukums')->get();
         return view('izstradajumi',  compact('izstradajumi'));
     }

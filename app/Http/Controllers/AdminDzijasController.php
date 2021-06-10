@@ -23,8 +23,13 @@ class AdminDzijasController extends Controller
      }
     public function index()
     {
+        if (Gate::allows('is-admin')) {
         $dzijas = Dzija::all();
         return view('admindzijas',  compact('dzijas'));
+    }
+        else {
+        return redirect('dashboard')->withErrors('Access denied');
+        }
     }
 
     // public function index($id)

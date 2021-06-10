@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Izstradajums;
 use App\Models\Veids;
+use App\Models\Dzija;
 use Illuminate\Support\Facades\Gate;
 
 use Illuminate\Http\Request;
@@ -21,8 +22,13 @@ class AdminIzstradajumiController extends Controller
     
     public function index()
     {
+        if (Gate::allows('is-admin')) {
         $izstradajumi = Izstradajums::all();
         return view('adminizstradajumi',  compact('izstradajumi'));
+        }
+        else {
+            return redirect('dashboard')->withErrors('Nav piekļuves');
+        }
     }
 
     // public function index($id)

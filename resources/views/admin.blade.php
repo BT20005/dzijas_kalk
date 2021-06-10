@@ -32,7 +32,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex items-center">
-                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('razotajs') }}" class="underline text-red-900 dark:text-gray">RAŽOTAJI</a></div>
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('razotajs') }}" class="underline text-red-900 dark:text-gray">RAŽOTĀJI</a></div>
                     </div>
                     <div class="ml-12">
                         <div class="mt-2 text-gray-800  text-m">Lai pievienotu, atjaunotu un dzēstu ražotājus.</div>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex items-center">
-                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('veids') }}" class="underline text-red-900 dark:text-gray">VEDI</a></div>
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('veids') }}" class="underline text-red-900 dark:text-gray">VEIDI</a></div>
                     </div>
                     <div class="ml-12">
                         <div class="mt-2 text-gray-800  text-m">Lai pievienotu, atjaunotu un dzēstu veidus.</div>
@@ -59,7 +59,7 @@
                         <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('adminizstradajumi') }}" class="underline text-red-900 dark:text-gray">IZSTRĀDĀJUMI</a></div>
                     </div>
                     <div class="ml-12">
-                        <div class="mt-2 text-gray-800  text-m">Lai pievienotu, atjaunotu un dzēstu ražotājus.</div>
+                        <div class="mt-2 text-gray-800  text-m">Lai pievienotu, atjaunotu un dzēstu izstrādājumus.</div>
                     </div>
                 </div>
             </div>

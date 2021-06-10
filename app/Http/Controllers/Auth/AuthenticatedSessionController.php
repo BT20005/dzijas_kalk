@@ -19,7 +19,7 @@ class AuthenticatedSessionController extends Controller
         $this->middleware('auth');
         // $this->middleware('auth', ['only' => 'profile']);
         // $this->middleware('auth', ['except' =>
-        ['login','index']);
+        //['login','index']);
         
     }
     public function create()

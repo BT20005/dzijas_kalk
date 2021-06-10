@@ -58,8 +58,8 @@ class RazotajsController extends Controller
     public function show($id)
     {
         $razotajs = Razotajs::findOrFail($id);
-        $dzija = $razotajs->dzijas;
-        return view('dzijas', compact('dzijas', 'razotajs'));
+        $dzija = $razotajs->dzija;
+        return view('dzija', compact('dzija', 'razotajs'));
     }
 
     /**

@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 
 class VeidsController extends Controller
 {
-    // public function __construct() {
+    public function __construct() {
+        $this->middleware('auth.admin')->only(['edit', 'create', 'store']);
     //     // only Admins have access to the following methods
     //     $this->middleware('auth.admin')->only(['create', 'store']);
     //     // only authenticated users have access to the methods of the controller
     //     $this->middleware('auth');
-    // }
+    }
     public function index()
     {
         $veidi = Veids::all();

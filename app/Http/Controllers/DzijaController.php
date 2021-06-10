@@ -6,15 +6,19 @@ use App\Models\Dzija;
 use App\Models\Razotajs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\Gate;
 
 class DzijaController extends Controller
 {
-    // public function __construct() {
-    //     // only Admins have access to the following methods
-    //     $this->middleware('auth.admin')->only(['create', 'store']);
-    //     // only authenticated users have access to the methods of the controller
-    //     $this->middleware('auth');
-    // }
+    public function __construct() {
+       //$this->middleware('auth.admin')->only(['edit']);
+       //$this->middleware('auth.admin')->only(['edit', 'create', 'store']);
+        //$this->middleware('auth', ['only'=>'edit']);
+    //only Admins have access to the following methods
+        // $this->middleware('auth.admin')->only(['create', 'store']);
+         // only authenticated users have access to the methods of the controller
+        //$this->middleware('auth');
+     }
         
     /**
      * Dziju saraksts.
@@ -88,10 +92,16 @@ class DzijaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    //public function edit($id)
+    //{
+    //    if (Gate::allows('is-admin')) {
+    //       $dzija = Dzija::find($id);
+    //       return view ('edit', compact('dzija'));
+    //   }
+    //  else {
+    //       return redirect('dashboard')->withErrors('Access denied');
+    //    }
+    //}
 
     /**
      * Update the specified resource in storage.

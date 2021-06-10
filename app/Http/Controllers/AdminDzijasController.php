@@ -29,8 +29,8 @@ class AdminDzijasController extends Controller
 
     // public function index($id)
     // {
-    // $izstradajumi = Izstradajums::where('veids_id','=',$id)->get();
-    // return view('izstradajumi',['veids_id'=>$id,'izstradajumi'=>$izstradajumi]);
+    // $dzijas = Dzija::where('razotajs_id','=',$id)->get();
+    // return view('dzijas',['razotajs_id'=>$id,'izstradajumi'=>$dzijas]);
     // }
     /**
      * Forma jaunai dzijai.

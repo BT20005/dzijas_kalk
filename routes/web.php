@@ -9,6 +9,7 @@ use App\Http\Controllers\DzijaController;
 use App\Http\Controllers\IzstradajumsController;
 use App\Http\Controllers\AdminIzstradajumiController;
 use App\Http\Controllers\AdminDzijasController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +45,7 @@ Route::resource('dzijas', DzijaController::class);
 Route::resource('izstradajumi', IzstradajumsController::class);
 Route::resource('adminizstradajumi', AdminIzstradajumiController::class);
 Route::resource('admindzijas', AdminDzijasController::class);
+Route::resource('admindzijas', AdminController::class);
 
 // Route::resource('adminizstradajumi', AdminIzstradajumiController::class, ['except' => ['index', 'create']]);
 // Route::get('adminizstradajumi/veids/{id}', [AdminIzstradajumiController::class, 'index']);

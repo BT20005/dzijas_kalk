@@ -37,8 +37,11 @@
                             </x-dropdown-link>
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-
+<!--                    <a href="{{ route('auth.social', 'facebook') }}" title="Facebook">
+                                <a<i class="fa fa-2x fa-facebook-square"></i></a>                -->
+                    
+                                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+             
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
                         @endif
@@ -129,8 +132,8 @@
 
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         BT, IZ
-                    </div>
-                </div>
+                    </div>                                 
+                </div>               
             </div>
         </div>
     </body>

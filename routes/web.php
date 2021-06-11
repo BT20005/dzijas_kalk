@@ -9,6 +9,7 @@ use App\Http\Controllers\DzijaController;
 use App\Http\Controllers\IzstradajumsController;
 use App\Http\Controllers\AdminIzstradajumiController;
 use App\Http\Controllers\AdminDzijasController;
+use Laravel\Socialite\Facades\Socialite;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,3 +54,25 @@ Route::get('admindzijas/veids/{id}', [AdminDzijasController::class, 'index']);
 
 Route::get('dzijas/filter', [BookController::class, 'showFilter'])->name('dzijas.filter');
 Route::post('dzijas/filter', [BookController::class, 'filter']);
+
+Route::get('/social-auth/{provider}', 'Auth\SocialController@redirectToProvider')->name('auth.social');
+
+Route::get('/social-auth/{provider}/callback', 'Auth\SocialController@handleProviderCallback')->name('auth.social.callback');
+
+//Route::get('/auth/redirect', function () {
+//    return Socialite::driver('facebook')->redirect();});
+//
+//Route::get('/auth/callback', function () {
+//    $user = Socialite::driver('facebook')->user();
+//
+//    // $user->token
+//});
+//
+//Route::get('/auth/redirect', function () {
+//    return Socialite::driver('google')->redirect();});
+//
+//Route::get('/auth/callback', function () {
+//    $user = Socialite::driver('google')->user();
+//
+//    // $user->token
+//});

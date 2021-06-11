@@ -51,6 +51,6 @@
                     {{ __('Log in') }}
                 </x-button>
             </div>
-        </form>
+           </form>                  
     </x-auth-card>
 </x-guest-layout>

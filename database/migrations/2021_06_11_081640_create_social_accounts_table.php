@@ -14,16 +14,16 @@ class CreateSocialAccountsTable extends Migration
     public function up()
     {
         Schema::create('social_accounts', function (Blueprint $table) {
-            //$table->id();
+            $table->id();
             //$table->timestamps();
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
+            //$table->increments('id');
+            //$table->unsignedInteger('user_id');
             $table->string('provider_id');
             $table->string('provider');
             $table->string('token');
             $table->timestamps();
 
-            $table->foreign('user_id')
+            $table->foreignID('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('CASCADE');

@@ -9,6 +9,7 @@ use App\Http\Controllers\DzijaController;
 use App\Http\Controllers\IzstradajumsController;
 use App\Http\Controllers\AdminIzstradajumiController;
 use App\Http\Controllers\AdminDzijasController;
+use App\Http\Controllers\Auth\SocialController as AuthSocialController;
 use Laravel\Socialite\Facades\Socialite;
 /*
 |--------------------------------------------------------------------------
@@ -55,9 +56,9 @@ Route::get('admindzijas/veids/{id}', [AdminDzijasController::class, 'index']);
 Route::get('dzijas/filter', [BookController::class, 'showFilter'])->name('dzijas.filter');
 Route::post('dzijas/filter', [BookController::class, 'filter']);
 
-Route::get('/social-auth/{provider}', 'Auth\SocialController@redirectToProvider')->name('auth.social');
+Route::get('/social-auth/{provider}', [AuthSocialController::class, 'redirectToProvider'])->name('auth.social');
 
-Route::get('/social-auth/{provider}/callback', 'Auth\SocialController@handleProviderCallback')->name('auth.social.callback');
+Route::get('/social-auth/{provider}/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('auth.social.callback');
 
 //Route::get('/auth/redirect', function () {
 //    return Socialite::driver('facebook')->redirect();});

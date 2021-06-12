@@ -10,6 +10,9 @@ use App\Http\Controllers\IzstradajumsController;
 use App\Http\Controllers\AdminIzstradajumiController;
 use App\Http\Controllers\AdminDzijasController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\SocialController as AuthSocialController;
+
+use Laravel\Socialite\Facades\Socialite;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,5 +56,27 @@ Route::resource('admindzijas', AdminController::class);
 Route::resource('admindzijas', AdminDzijasController::class, ['except' => ['index', 'create']]);
 Route::get('admindzijas/veids/{id}', [AdminDzijasController::class, 'index']);
 
-Route::get('dzijas/filter', [BookController::class, 'showFilter'])->name('dzijas.filter');
-Route::post('dzijas/filter', [BookController::class, 'filter']);
+Route::get('dzijas/filter', [DzijaController::class, 'showFilter'])->name('dzijas.filter');
+Route::post('dzijas/filter', [DzijaController::class, 'filter']);
+
+Route::get('/social-auth/{provider}', [AuthSocialController::class, 'redirectToProvider'])->name('auth.social');
+
+Route::get('/social-auth/{provider}/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('auth.social.callback');
+
+// Route::get('/auth/redirect', function () {
+//    return AuthSocialController::driver('facebook')->redirect();});
+
+//Route::get('/auth/callback', function () {
+//    $user = Socialite::driver('facebook')->user();
+//
+//    // $user->token
+//});
+//
+//Route::get('/auth/redirect', function () {
+//    return Socialite::driver('google')->redirect();});
+//
+//Route::get('/auth/callback', function () {
+//    $user = Socialite::driver('google')->user();
+//
+//    // $user->token
+//});

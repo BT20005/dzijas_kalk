@@ -27,7 +27,7 @@ class AdminIzstradajumiController extends Controller
         return view('adminizstradajumi',  compact('izstradajumi'));
         }
         else {
-            return redirect('dashboard')->withErrors('Nav piekļuves');
+            return redirect('/')->withErrors('Nav piekļuves');
         }
     }
 
@@ -55,7 +55,11 @@ class AdminIzstradajumiController extends Controller
     public function create()
     {
          if (Gate::allows('is-admin')) {
-        return view('jaunsizstradajums');
+            $veidi = Veids::all()->map(function ($veids) {
+                $veids->value = $veids->id;
+                return $veids;
+           });
+        return view('jaunsizstradajums', compact('veidi'));
         }
         else {
             return redirect('dashboard')->withErrors('Access denied');

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class VeidsController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth.admin')->only(['edit', 'create', 'store']);
+        $this->middleware('auth.admin')->only(['edit']);
     //     // only Admins have access to the following methods
     //     $this->middleware('auth.admin')->only(['create', 'store']);
     //     // only authenticated users have access to the methods of the controller
@@ -58,7 +58,7 @@ class VeidsController extends Controller
     public function show($id)
     {
         $veids = Veids::findOrFail($id);
-        $izstradajums = $veids->izstradajumi;
+        $izstradajumi = $veids->izstradajumi;
         return view('izstradajumi', compact('izstradajumi', 'veids'));
     }
 

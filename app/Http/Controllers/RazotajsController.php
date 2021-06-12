@@ -11,7 +11,7 @@ class RazotajsController extends Controller
 {
    
     public function __construct() {
-        $this->middleware('auth.admin')->only(['edit', 'create', 'store']);
+        $this->middleware('auth.admin')->only(['edit']);
         //$this->middleware('auth.admin')->only(['edit', 'create', 'store']);
     //     // only Admins have access to the following methods
     //     $this->middleware('auth.admin')->only(['create', 'store']);
@@ -61,8 +61,8 @@ class RazotajsController extends Controller
     public function show($id)
     {
         $razotajs = Razotajs::findOrFail($id);
-        $dzija = $razotajs->dzija;
-        return view('dzija', compact('dzija', 'razotajs'));
+        $dzijas = $razotajs->dzijas;
+        return view('dzijas', compact('dzijas', 'razotajs'));
     }
 
     /**

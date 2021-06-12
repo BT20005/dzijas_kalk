@@ -77,10 +77,12 @@
                                 <div class="mt-2 text-gray-800  text-m">
                                     Ja vēlies uzzināt cik dzijas nepieciešams tavam iecerētajam džemperim, cepurei vai zeķēm. Šī ir īstā vieta!
                                 </div>
+                                <div>
                             </div>
                         </div>
                     </div>
                 </div>
+        </div>
                 <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
                     <div class="text-center text-sm text-gray-500 sm:text-left">
                         <div class="flex items-center">
@@ -92,7 +94,10 @@
                             </svg>
                         </div>
                     </div>
-                    <div> <a href="{{ url('/admin') }}" class="text-sm text-gray-500 underline">ADMINISTRĀCIJAS PANELIS</a>
+                    <div>
+                    @can ('is-admin')
+                    <a href="{{ url('/admin') }}" class="text-sm text-gray-500 underline">ADMINISTRĀCIJAS PANELIS</a>
+                    @endcan
                     </div>
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         BT, IZ

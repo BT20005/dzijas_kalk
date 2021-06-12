@@ -28,7 +28,7 @@ class AdminDzijasController extends Controller
         return view('admindzijas',  compact('dzijas'));
     }
         else {
-        return redirect('dashboard')->withErrors('Access denied');
+        return redirect('/')->withErrors('Access denied');
         }
     }
 
@@ -56,7 +56,11 @@ class AdminDzijasController extends Controller
     public function create()
     {   
         if (Gate::allows('is-admin')) {
-        return view('jaunadzija');
+            $razotaji = Razotajs::all()->map(function ($razotajs) {
+                $razotajs->value = $razotajs->id;
+                return $razotajs;
+           });
+        return view('jaunadzija', compact ('razotaji'));
     }
     else {
             return redirect('dashboard')->withErrors('Access denied');
@@ -86,7 +90,7 @@ class AdminDzijasController extends Controller
         $dzija->garums = $request->garums;
         $dzija->veids()->associate(Razotajs::findOrFail($request->razotajs));
         $dzija->save();        
-        return redirect()->route('dzija.index');
+        return redirect()->route('admindzijas.index');
     }
     else {
             return redirect('dashboard')->withErrors('Access denied');

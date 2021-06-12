@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>DZIJA JAUNA</title>
+<title>IZSTRĀDĀJUMS JAUNS</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -45,12 +45,12 @@
                 </div>
             @endif
     </div>
-    <form method="POST" action="{{ action([App\Http\Controllers\DzijaController::class, 'store']) }}">
+    <form method="POST" action="{{ action([App\Http\Controllers\IzstradajumsController::class, 'store']) }}">
         @csrf
 
         <!--Nosaukums -->
         <div>
-            <label for="nosaukums" value="Nosaukums" >Dzijas nosaukums: </label>
+            <label for="nosaukums" value="Nosaukums" ></label>
 
             <input id="nosaukums" class="block mt-1 w-full" type="text" name="nosaukums" :value="old('nosaukums')" required autofocus />
 
@@ -59,29 +59,29 @@
 
         <!-- Garums -->
         <div>
-            <label for="gaums" value="Garums">Dzijas vienības garums: </label>
+            <label for="gaums" value="Garums"></label>
 
-            <input id="garums" class="block mt-1 w-full" type="number" name="garums" :value="old('garums')" required />
+            <input id="garums" class="block mt-1 w-full" type="number" name="garums" :value="old('garums')" required autofocus />
 
             <validation-error class="mb-4" :errors="$errors" title="garums"/>            
         </div>
 
         <!-- Apraksts -->
         <div>
-            <label for="apraksts" value="Apraksts" >Dzijas apraksts(nav obligāts): </label>
+            <label for="apraksts" value="Apraksts" ></label>
 
-            <textarea id="apraksts" class="block mt-1 w-full" type="text" name="apraksts" :value="old('apraksts')"></textarea>
+            <textarea id="apraksts" class="block mt-1 w-full" type="text" name="apraksts" :value="old('apraksts')" required autofocus></textarea>
 
             <validation-error class="mb-4" :errors="$errors" title="apraksts"/>            
         </div>
 
         <!-- Ražotājs -->
         <div>
-            <label for="razotajs" value="Ražotājs" >Ražotājs: </label>
+            <label for="veids" value="Veids" ></label>
             
-            <select id="razotajs" class="block mt-1 w-full" name="razotajs" :list='$razotaji' :value="old('razotajs')"></select>
+            <select id="veids" class="block mt-1 w-full" name="razotajs" :list='$veidi' :value="old('veids')" required autofocus></select>
 
-            <validation-error class="mb-4" :errors="$errors" title="razotajs"/>            
+            <validation-error class="mb-4" :errors="$errors" title="veids"/>            
         </div>  
         <div class="flex items-center justify-end mt-4">
             <button class="ml-4">

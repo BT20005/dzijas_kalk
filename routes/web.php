@@ -30,6 +30,7 @@ require __DIR__.'/auth.php';
 Route::get('/', function () {
     return view('sakums');
 });
+
 Route::get('/admin', function () {
     return view('admin');
 });
@@ -46,7 +47,9 @@ Route::resource('dzijas', DzijaController::class);
 Route::resource('izstradajumi', IzstradajumsController::class);
 Route::resource('adminizstradajumi', AdminIzstradajumiController::class);
 Route::resource('admindzijas', AdminDzijasController::class);
-Route::resource('admindzijas', AdminController::class);
+
+Route::get('/dzija/{id}', [DzijaController::class, 'show']);
+Route::get('/izstradajums/{id}', [IzstradajumsController::class, 'show']);
 
 // Route::resource('adminizstradajumi', AdminIzstradajumiController::class, ['except' => ['index', 'create']]);
 // Route::get('adminizstradajumi/veids/{id}', [AdminIzstradajumiController::class, 'index']);

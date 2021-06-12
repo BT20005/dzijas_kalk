@@ -32,8 +32,8 @@ return [
     'facebook' => [
         'client_id' => '615229656102560',
         'client_secret' => 'a31b4c55ccf805213d6d0ff80ff60e52',
-        //'redirect' => 'https://example.com/callback-url',
-        'redirect' => '/social-auth/facebook/callback',
+        'redirect' => 'https://example.com/callback-url',
+        //'redirect' => '/social-auth/facebook/callback',
 ],
 //    'facebook' => [
 //        'client_id' => env('FACEBOOK_CLIENT_ID'),

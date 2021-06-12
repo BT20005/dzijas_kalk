@@ -1,14 +1,6 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
-<<<<<<< HEAD
-use App\Models\User;
-use App\Models\SocialAccount;
-use App\Http\Controllers\Controller;
-
-use Laravel\Socialite\Facades\Socialite;
-=======
 use App\Http\Controllers\Controller;
 use App\Models\SocialAccount;
 use Laravel\Socialite\Facades\Socialite;
@@ -16,21 +8,11 @@ use SocialiteProviders\Manager\OAuth2\User;
 use function auth;
 use function bcrypt;
 use function redirect;
->>>>>>> e483b8175fcbe6bee53a05ecd55e1a8abc6728a5
 
 class SocialController extends Controller
 {
     public function redirectToProvider($provider)
     {
-<<<<<<< HEAD
-        return SocialAccount::driver($provider)->redirect();
-    }
-
-    public function handleProviderCallback($provider)
-    {
-    $user = SocialAccount::driver($provider)->user();
-    }
-=======
         return Socialite::driver($provider)->redirect();
     }
 
@@ -90,5 +72,4 @@ public function addSocialAccount($provider, $user, $socialiteUser)
     ]);
 }
 
->>>>>>> e483b8175fcbe6bee53a05ecd55e1a8abc6728a5
 }

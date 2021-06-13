@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\VeidsController;
 use App\Http\Controllers\RazotajsController;
 use App\Http\Controllers\DzijaController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\IzstradajumsController;
 use App\Http\Controllers\AdminIzstradajumiController;
 use App\Http\Controllers\AdminDzijasController;
@@ -21,14 +22,15 @@ use Laravel\Socialite\Facades\Socialite;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
 Route::get('/', function () {
     return view('sakums');
+ //})->middleware(['auth'])->name('/');
 });
 
 Route::get('/admin', function () {
@@ -48,6 +50,9 @@ Route::resource('izstradajumi', IzstradajumsController::class);
 Route::resource('adminizstradajumi', AdminIzstradajumiController::class);
 Route::resource('admindzijas', AdminDzijasController::class);
 
+//Route::resource('admindzijas', AdminController::class);
+
+
 Route::get('/dzija/{id}', [DzijaController::class, 'show']);
 Route::get('/izstradajums/{id}', [IzstradajumsController::class, 'show']);
 
@@ -63,6 +68,11 @@ Route::post('dzijas/filter', [DzijaController::class, 'filter']);
 Route::get('/social-auth/{provider}', [AuthSocialController::class, 'redirectToProvider'])->name('auth.social');
 
 Route::get('/social-auth/{provider}/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('auth.social.callback');
+
+Route::get('lang/{locale}', LanguageController::class);
+
+//Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
+
 
 //Route::get('/auth/callback', function () {
 //    $user = Socialite::driver('facebook')->user();

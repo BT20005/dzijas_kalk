@@ -97,7 +97,10 @@
                         </div>
                     </div>
                     <div> 
+
+
                     @can ('is-admin')
+
                     <a href="{{ url('/admin') }}" class="text-sm text-gray-500 underline">ADMINISTRĀCIJAS PANELIS</a>
                     @endcan
                     </div>

@@ -1,8 +1,15 @@
 <?php
 return [
-'Laipni lūgti' =>'Laipni lūgti',
+// 'welcome' => 'Lapini aicināti!',
+// 'title' => 'Dziju lapa',
+// 'message'=> 'Izvēlieties dziju!'
+//'Laipni lūgti' =>'Laipni lūgti',
 'Dzija' => 'Dzija',
+'DZIJA' => 'DZIJA',
 'Izstrādājums' => 'Izstrādājums',
+'IZSTRĀDĀJUMS' => 'IZSTRĀDĀJUMS',
 'Kalkulators' => 'Kalkulators',
-'Veikals' => 'Veikals'
+'KALKULATORS' => 'KALKULATORS',
+'Veikals' => 'Veikals',
+'VEIKALS' => 'VEIKALS'
 ];

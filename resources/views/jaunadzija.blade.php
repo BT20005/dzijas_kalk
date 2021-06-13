@@ -50,7 +50,7 @@
 
         <!--Nosaukums -->
         <div>
-            <label for="nosaukums" value="Nosaukums" ></label>
+            <label for="nosaukums" value="Nosaukums" >Dzijas nosaukums: </label>
 
             <input id="nosaukums" class="block mt-1 w-full" type="text" name="nosaukums" :value="old('nosaukums')" required autofocus />
 
@@ -59,7 +59,7 @@
 
         <!-- Garums -->
         <div>
-            <label for="gaums" value="Garums"></label>
+            <label for="gaums" value="Garums">Dzijas vienības garums: </label>
 
             <input id="garums" class="block mt-1 w-full" type="number" name="garums" :value="old('garums')" required />
 
@@ -68,7 +68,7 @@
 
         <!-- Apraksts -->
         <div>
-            <label for="apraksts" value="Apraksts" ></label>
+            <label for="apraksts" value="Apraksts" >Dzijas apraksts(nav obligāts): </label>
 
             <textarea id="apraksts" class="block mt-1 w-full" type="text" name="apraksts" :value="old('apraksts')"></textarea>
 
@@ -77,9 +77,9 @@
 
         <!-- Ražotājs -->
         <div>
-            <label for="razotajs" value="Ražotājs" ></label>
+            <label for="razotajs" value="Ražotājs" >Ražotājs: </label>
             
-            <select id="razotajs" class="block mt-1 w-full" name="razotajs" :list='$razotajs' :value="old('razotajs')"></select>
+            <select id="razotajs" class="block mt-1 w-full" name="razotajs" :list='$razotaji' :value="old('razotajs')"></select>
 
             <validation-error class="mb-4" :errors="$errors" title="razotajs"/>            
         </div>  

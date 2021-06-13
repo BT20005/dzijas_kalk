@@ -9,7 +9,7 @@ use App\Models\Veids;
 class Izstradajums extends Model
 {
     use HasFactory;
-    public function veidi() { // FK relationship
+    public function veids() { // FK relationship
         return $this->belongsTo(Veids::class);
         }
 }

@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class AdminIzstradajumiController extends Controller
 {
      public function __construct() {
-       $this->middleware('auth.admin')->only(['edit']);
+       //$this->middleware('auth.admin')->only(['edit']);
        //$this->middleware('auth.admin')->only(['edit', 'create', 'store', 'destroy']);
         //$this->middleware('auth', ['only'=>'edit']);
     //only Admins have access to the following methods
@@ -27,7 +27,7 @@ class AdminIzstradajumiController extends Controller
         return view('adminizstradajumi',  compact('izstradajumi'));
         }
         else {
-            return redirect('dashboard')->withErrors('Nav piekļuves');
+            return redirect('/')->withErrors('Nav piekļuves');
         }
     }
 
@@ -44,18 +44,41 @@ class AdminIzstradajumiController extends Controller
     public function edit($id)
     {
         if (Gate::allows('is-admin')) {
-            $adminizstradajumi = Dzija::find($id);
-            return view ('edit', compact('adminizstradajumi'));
+            $izstradajums = Izstradajums::find($id);
+            return view ('izstradajums_edit', compact('izstradajums'));
         }
         else {
             return redirect('dashboard')->withErrors('Access denied');
         }
     }
+    public function update(Request $request, $id)
+    {
+    $rules = array(
+        'nosaukums' => 'required|string|min:2|max:50',
+        'apraksts' => 'nullable|string',
+        'garums' => 'required|min:1|integer|max:9999',
+        'izmers' => 'required|min:1|max:9999',
+    );
+    $this->validate($request, $rules);
+
+    $izstradajums = Izstradajums::find($id);
+//    $product->fill($request->all($id));
+    $izstradajums->nosaukums = $request['nosaukums'];
+    $izstradajums->garums = $request['garums'];
+    $izstradajums->izmers = $request['izmers'];
+    $izstradajums->apraksts = $request['apraksts'];
+    $izstradajums->save();
+    return redirect('adminizstradajumi');
+    }
     
     public function create()
     {
          if (Gate::allows('is-admin')) {
-        return view('jaunsizstradajums');
+            $veidi = Veids::all()->map(function ($veids) {
+                $veids->value = $veids->id;
+                return $veids;
+           });
+        return view('jaunsizstradajums', compact('veidi'));
         }
         else {
             return redirect('dashboard')->withErrors('Access denied');
@@ -102,7 +125,6 @@ class AdminIzstradajumiController extends Controller
     public function destroy($id)
     {
         if (Gate::allows('is-admin')) {
-        $veids_id = Izstradajums::findOrFail($id)->veids_id;
         Izstradajums::findOrFail($id)->delete();
         return redirect('adminizstradajumi');
     }

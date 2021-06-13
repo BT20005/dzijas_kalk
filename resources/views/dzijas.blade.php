@@ -75,7 +75,11 @@
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-800  text-m">
-                                    Kamoli, šķeteres, fices un vēl ...
+                                @foreach ( $dzijas as $dzija )
+                                <p class='text-lg'>
+                                <a href="{{ url('dzija', $dzija['id']) }}">{{ $dzija->nosaukums }}</a>
+                                </p>
+                                @endforeach
                                 </div>
                             </div>
                         </div>
@@ -93,7 +97,9 @@
                         </div>
                     </div>
                     <div> 
+                    @can ('is-admin')
                     <a href="{{ url('/admin') }}" class="text-sm text-gray-500 underline">ADMINISTRĀCIJAS PANELIS</a>
+                    @endcan
                     </div>
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         BT, IZ

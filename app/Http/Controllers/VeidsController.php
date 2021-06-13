@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Veids;
 use App\Models\Izstradajums;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Gate;
 class VeidsController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth.admin')->only(['edit']);
+        //$this->middleware('auth.admin')->only(['edit']);
     //     // only Admins have access to the following methods
     //     $this->middleware('auth.admin')->only(['create', 'store']);
     //     // only authenticated users have access to the methods of the controller
@@ -70,7 +70,13 @@ class VeidsController extends Controller
      */
     public function edit($id)
     {
-        //
+        // if (Gate::allows('is-admin')) {
+            $veids = Veids::find($id);
+            return view ('veids_edit', compact('veids'));
+        // }
+        // else {
+        //     return redirect('dashboard')->withErrors('Access denied');
+        // }
     }
 
     /**

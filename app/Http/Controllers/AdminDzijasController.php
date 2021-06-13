@@ -13,7 +13,7 @@ use function view;
 class AdminDzijasController extends Controller
 {
        public function __construct() {
-       $this->middleware('auth.admin')->only(['edit']);
+       //$this->middleware('auth.admin')->only(['edit']);
        //$this->middleware('auth.admin')->only(['edit', 'create', 'store', 'destroy']);
         //$this->middleware('auth', ['only'=>'edit']);
     //only Admins have access to the following methods
@@ -45,14 +45,31 @@ class AdminDzijasController extends Controller
     public function edit($id)
     {
         if (Gate::allows('is-admin')) {
-            $admindzijas = Dzija::find($id);
-            return view ('edit', compact('admindzijas'));
+            $dzija = Dzija::find($id);
+            return view ('dzija_edit', compact('dzija'));
         }
         else {
             return redirect('dashboard')->withErrors('Access denied');
         }
     }
-    
+    public function update(Request $request, $id)
+    {
+    $rules = array(
+        'nosaukums' => 'required|string|min:2|max:50',
+        'apraksts' => 'nullable|string',
+        'garums' => 'required|min:1|integer|max:9999',
+    );
+    $this->validate($request, $rules);
+
+    $dzija = Dzija::find($id);
+//    $product->fill($request->all($id));
+    $dzija->nosaukums = $request['nosaukums'];
+    $dzija->garums = $request['garums'];
+    $dzija->apraksts = $request['apraksts'];
+    $dzija->save();
+    return redirect('admindzijas');
+    }
+
     public function create()
     {   
         if (Gate::allows('is-admin')) {
@@ -77,7 +94,7 @@ class AdminDzijasController extends Controller
     {
         if (Gate::allows('is-admin')) {
         $rules = array(
-            'nosaukums' => 'required|string|min:2|max:50|unique:izstradajums',
+            'nosaukums' => 'required|string|min:2|max:50|unique:dzija',
             'apraksts' => 'nullable|string',
             'garums' => 'required|digits:4|integer|max:9999',
             'razotajs' => 'required|exists:razotajs_id',
@@ -106,7 +123,6 @@ class AdminDzijasController extends Controller
     public function destroy($id)
     {
         if (Gate::allows('is-admin')) {
-        $razotajs_id = Dzija::findOrFail($id)->razotajs_id;
         Dzija::findOrFail($id)->delete();
         return redirect('admindzija');
     }

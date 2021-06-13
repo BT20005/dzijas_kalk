@@ -51,7 +51,7 @@ Route::resource('admindzijas', AdminDzijasController::class);
 Route::get('/dzija/{id}', [DzijaController::class, 'show']);
 Route::get('/izstradajums/{id}', [IzstradajumsController::class, 'show']);
 
-// Route::resource('adminizstradajumi', AdminIzstradajumiController::class, ['except' => ['index', 'create']]);
+//Route::resource('adminizstradajumi', AdminIzstradajumiController::class, ['except' => ['index', 'create']]);
 // Route::get('adminizstradajumi/veids/{id}', [AdminIzstradajumiController::class, 'index']);
 
 Route::resource('admindzijas', AdminDzijasController::class, ['except' => ['index', 'create']]);

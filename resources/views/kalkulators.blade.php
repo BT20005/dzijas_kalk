@@ -25,7 +25,7 @@
         @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/') }}" class="text-sm text-gray-700 underline">SĀKUMS</a>
+                        <a href="{{ url('/') }}" class="text-sm text-gray-700 underline">{{ __('messages.SĀKUMS')}}</a>
                         <div>{{ Auth::user()->name }}</div>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -33,20 +33,30 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('messages.Iziet') }}
                             </x-dropdown-link>
                         </form>
-                    @else
+                    <div class="container">
+                        <a href="{{ url('lang/en') }}" class="display-4 text-center" style="font-size: 0.8rem">EN</a>
+                        <a href="{{ url('lang/lv') }}" class="ml-4 text-center" style="font-size: 0.8rem">LV</a>              
+                    <br><br>
+                    </div>
+                     @else
+                    <div class="container">
+                        <a href="{{ url('lang/en') }}" class="display-4 text-center" style="font-size: 0.8rem">EN</a>
+                        <a href="{{ url('lang/lv') }}" class="ml-4 text-center" style="font-size: 0.8rem">LV</a>              
+                    <br><br>
+                    </div>
                     <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class=" ml-4 bi bi-facebook" viewBox="0 0 16 16">
                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
                     </svg>
-                   <a href="{{ route('auth.social', 'facebook') }}" title="Facebook" class="ml-2 text-sm text-gray-700 underline">Login with FB</a>               
+                   <a href="{{ route('auth.social', 'facebook') }}" title="Facebook" class="ml-2 text-sm text-gray-700 underline">{{ __('messages.Pieslēgties ar FB') }}</a>               
                     </div>
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">{{ __('messages.Pieslēgties') }}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">{{ __('messages.Reģistrēties') }}</a>
                         @endif
                     @endauth
                 </div>
@@ -59,7 +69,7 @@
                         <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm2 .5v2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5zm0 4v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zM4.5 9a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM4 12.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zM7.5 6a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM7 9.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm.5 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM10 6.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm.5 2.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5h-1z"/>
                         </g>
                         <div class="ml-4 text-xl leading-7 font-semibold  text-danger-900 dark:text-grey"></div>
-                        <h1>KALKULATORS</h1>
+                        <h1>{{ __('messages.DZIJAS KALKULATORS') }}</h1>
                     </svg>
                 </div>
 
@@ -70,12 +80,12 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="red" class="bi bi-calculator-fill" viewBox="0 0 16 16">
                                 <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm2 .5v2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5zm0 4v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zM4.5 9a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM4 12.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zM7.5 6a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM7 9.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm.5 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM10 6.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm.5 2.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5h-1z"/>
                                 </svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('/') }}" class="underline text-gray-900 dark:text-gray">UZ SĀKUMU</a></div>
+                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('/') }}" class="underline text-gray-900 dark:text-gray">{{ __('messages.UZ SĀKUMU') }}</a></div>
                             </div>
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-800  text-m">
-                                    Ja vēlies uzzināt cik dzijas nepieciešams tavam iecerētajam džemperim, cepurei vai zeķēm. Šī ir īstā vieta!
+                                    {{ __('messages.Ja vēlies uzzināt cik dzijas nepieciešams tavam iecerētajam džemperim, cepurei vai zeķēm. Šī ir īstā vieta!') }}
                                 </div>
                                 <div>
                             </div>
@@ -95,10 +105,9 @@
                         </div>
                     </div>
 
-                    <div>
-                    @can ('is-admin')
-                    <a href="{{ url('/admin') }}" class="text-sm text-gray-500 underline">ADMINISTRĀCIJAS PANELIS</a>
 
+                    @can ('is-admin')
+                    <div> <a href="{{ url('/admin') }}" class="text-sm text-gray-500 underline">{{ __('messages.ADMINISTRĀCIJAS PANELIS') }}</a>
                     @endcan
                     </div>
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">

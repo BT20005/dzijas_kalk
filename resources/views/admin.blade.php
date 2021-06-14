@@ -29,7 +29,7 @@
     @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/') }}" class="text-sm text-gray-700 underline">SĀKUMS</a>
+                        <a href="{{ url('/') }}" class="text-sm text-gray-700 underline">{{ __('messages.SĀKUMS')}}</a>
                         <div>{{ Auth::user()->name }}</div>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -37,14 +37,14 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('messages.Iziet') }}
                             </x-dropdown-link>
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">{{ __('messages.Pieslēgties') }}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">{{ __('messages.Reģistrēties') }}</a>
                         @endif
                     @endauth
                 </div>
@@ -55,7 +55,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex items-center">
-                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('razotajs') }}" class="underline text-red-900 dark:text-gray">RAŽOTĀJI</a></div>
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('razotajs') }}" class="underline text-red-900 dark:text-gray">{{ __('messages.RAŽOTĀJI') }}</a></div>
                     </div>
                     <div class="ml-12">
                         <div class="mt-2 text-gray-800  text-m">Lai pievienotu, atjaunotu un dzēstu ražotājus.</div>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex items-center">
-                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('veids') }}" class="underline text-red-900 dark:text-gray">VEIDI</a></div>
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('veids') }}" class="underline text-red-900 dark:text-gray">{{ __('messages.VEIDI') }}</a></div>
                     </div>
                     <div class="ml-12">
                         <div class="mt-2 text-gray-800  text-m">Lai pievienotu, atjaunotu un dzēstu veidus.</div>
@@ -71,7 +71,7 @@
                 </div>
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex items-center">
-                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('admindzijas') }}" class="underline text-red-900 dark:text-gray">DZIJAS</a></div>
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('admindzijas') }}" class="underline text-red-900 dark:text-gray">{{ __('messages.DZIJA') }}</a></div>
                     </div>
                     <div class="ml-12">
                         <div class="mt-2 text-gray-800  text-m">Lai pievienotu, atjaunotu un dzēstu dzijas.</div>
@@ -79,7 +79,7 @@
                 </div>        
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex items-center">
-                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('adminizstradajumi') }}" class="underline text-red-900 dark:text-gray">IZSTRĀDĀJUMI</a></div>
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('adminizstradajumi') }}" class="underline text-red-900 dark:text-gray">{{ __('messages.IZSTRĀDĀJUMI') }}</a></div>
                     </div>
                     <div class="ml-12">
                         <div class="mt-2 text-gray-800  text-m">Lai pievienotu, atjaunotu un dzēstu izstrādājumus.</div>

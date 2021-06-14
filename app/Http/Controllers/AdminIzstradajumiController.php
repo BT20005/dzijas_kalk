@@ -109,7 +109,7 @@ class AdminIzstradajumiController extends Controller
         $izstradajums->garums = $request->garums;
         $izstradajums->veids()->associate(Veids::findOrFail($request->veids));
         $izstradajums->save();        
-        return redirect()->route('izstradajums.index');
+        return redirect()->route('adminizstradajumi.index');
     }
         else {
             return redirect('dashboard')->withErrors('Access denied');

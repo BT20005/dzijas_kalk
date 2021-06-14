@@ -9,6 +9,7 @@ use App\Http\Controllers\DzijaController;
 use App\Http\Controllers\IzstradajumsController;
 use App\Http\Controllers\AdminIzstradajumiController;
 use App\Http\Controllers\AdminDzijasController;
+use App\Http\Controllers\KalkulacijasController;
 use App\Http\Controllers\Auth\SocialController as AuthSocialController;
 use Laravel\Socialite\Facades\Socialite;
 /*
@@ -41,12 +42,16 @@ Route::get('/admin', function () {
 Route::get('/kalkulators', function () {
     return view('kalkulators');
 });
+Route::get('/kalkulacijas', function () {
+    return view('kalkulacijas');
+});
 Route::resource('veids', VeidsController::class);
 Route::resource('razotajs', RazotajsController::class);
 Route::resource('dzijas', DzijaController::class);
 Route::resource('izstradajumi', IzstradajumsController::class);
 Route::resource('adminizstradajumi', AdminIzstradajumiController::class);
 Route::resource('admindzijas', AdminDzijasController::class);
+//Route::resource('kalculacijas', KalkulacijasController::class);
 
 Route::get('/dzija/{id}', [DzijaController::class, 'show']);
 Route::get('/izstradajums/{id}', [IzstradajumsController::class, 'show']);

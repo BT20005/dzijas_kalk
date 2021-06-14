@@ -53,7 +53,7 @@ class DzijaController extends Controller
             'nosaukums' => 'required|string|min:2|max:191',
             'garums' => 'required|digits:4|integer|max:9999',
             'apraksts' => 'nullable|string',
-            'razotajs' => 'required|exists:razotajs_id',
+            'razotajs' => 'required|exists:razotajs,id',
         );        
         $this->validate($request, $rules); 
         

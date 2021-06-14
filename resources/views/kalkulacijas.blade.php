@@ -21,7 +21,7 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 light:bg-gray-900 sm:items-center py-4 sm:pt-0">
+    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 light:bg-gray-900 sm:items-center py-4 sm:pt-0">
         @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
@@ -72,16 +72,77 @@
                                 </svg>
                                 <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('/') }}" class="underline text-gray-900 dark:text-gray">UZ SĀKUMU</a></div>
                             </div>
+        <div>
+        <h3>Izvēlieties izstrādājumu un dziju:</h3>
+        </div>
+    <form>
+        @csrf
+    <table class="border border-dark">
+    <tr> 
+		<td>1.  Dzijas nosaukums:</td>
+		<td>
+		<select id="dzija" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" name="dzija" :list='$dzijas' :value="old('dzija')">
+        @foreach ( $dzijas as $dzija )
+            <option value='{{$dzija->id}}'>{{$dzija->nosaukums}}</option>
+            @endforeach
+        </select>
+        <validation-error class="mb-4" :errors="$errors" title="dzija"/>  
+        </td>
+    </tr>
+    <tr> 
+	    <td>2.  Izstrādājuma veids:</td>
+	    <td>
+		<select id="izstradajums" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" name="izstradajums" :list='$izstradajumi' :value="old('izstradajums')">
+        @foreach ($izstradajumi as $izstradajums) 
+            <option value='{{$izstradajums->id}}'>{{$izstradajums->nosaukums}}</option>
+            @endforeach
+        </select>
+        </td>
+    </tr>
+    <tr> 
+		<td>3.  Izstrādājuma izmērs:</td>
+		<td>
+        <select id="izmers" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" name="izmers" :list='$izmers' :value="old('izmers')">
+        @foreach ($izstradajumi as $izstradajumi) 
+            <option value='{{$izstradajums->id}}'>{{$izstradajums->izmers}}</option>
+            @endforeach
+        </select>
+        </td>
+    </tr>
+    </table>  
+		<input type="submit" name="submit" value="Aprēķināt">
+	</form>	
 
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-800  text-m">
-                                    Ja vēlies uzzināt cik dzijas nepieciešams tavam iecerētajam džemperim, cepurei vai zeķēm. 
-                                    <a href="{{ url('/kalkulacijas') }}">Šī ir īstā vieta!</a>
-                                </div>
-                                
-                                <div>
-                            </div>
-                        </div>
+		 <?php
+		if(isset($_POST['submit']))
+		{
+		$d=$_POST['day'];
+		$m=$_POST['month'];
+		$y=$_POST['year'];
+		 
+		$dob=$d.'-'.$m.'-'.$y;
+		 
+		$bday=new DateTime($dob);
+		 
+		$t=date('d-m-Y');
+			
+		$age=$bday->diff(new DateTime);
+		 
+		$today=date('d-m-Y'); 
+		echo '<br />';
+		echo '<b>Your Birth date: </b>';
+		echo $dob;
+		echo '<br>';
+		echo '<b>Your Age : </b> ';
+		echo $age->y;
+		echo ' Years, ';
+		echo $age->m;
+		echo ' Months, ';
+		echo $age->d;
+		echo ' Days';
+        }
+        ?>
+
                     </div>
                 </div>
         </div>

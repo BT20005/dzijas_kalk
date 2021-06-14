@@ -72,6 +72,13 @@
                     Izdzēst
                     </button>
                     </form></td>
+                    <td><form method="POST" action="{{ action([App\Http\Controllers\AdminIzstradajumiController::class, 'edit'], $izstradajums->id) }}">
+                    @csrf
+                    @method('GET')
+                    <button>
+                    Labot
+                    </button>
+                    </form></td>
                 </tr>
                 
                 @endforeach

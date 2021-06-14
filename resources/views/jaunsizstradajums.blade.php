@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>DZIJAS</title>
+<title>IZSTRĀDĀJUMS JAUNS</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,8 +20,8 @@
 <body class="antialiased">
 <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
     <div>
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Dzijas') }}</h2>
-    @if (Route::has('login'))
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Izveidot jaunu dziju</h2>
+        @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
                         <a href="{{ url('/admin') }}" class="text-sm text-gray-700 underline">ATPAKAĻ</a>
@@ -44,55 +44,51 @@
                     @endauth
                 </div>
             @endif
-    </div>  
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                <table class="border border-dark">
-                <tr>
-                    <td> Razotajs</td>    
-                    <td> Nosaukums</td>
-                    <td> Garums</td>
-                    <td> Apraksts </td>
-                </tr>
-                @foreach ( $dzijas as $dzija )
-                
-                <tr>
-                    <td class='text-lg'><a href="{{ url('dzija', $dzija['id']) }}">{{ $dzija->razotajs_id }}</a></td>
-                    <td class='text-lg'><a href="{{ url('dzija', $dzija['id']) }}">{{ $dzija->nosaukums }}</a></td>
-                    <td class='text-lg'><a href="{{ url('dzija', $dzija['id']) }}">{{ $dzija->garums }}</a></td>
-                    <td class='text-lg'><a href="{{ url('dzija', $dzija['id']) }}">{{ $dzija->apraksts }}</a></td>
-                    <td><form method="POST" action="{{ action([App\Http\Controllers\AdminDzijasController::class, 'destroy'], $dzija->id) }}">
-                    @csrf
-                    @method('DELETE')
-                    <button>
-                    Izdzēst
-                    </button>
-                    </form></td>
-                    <td><form method="POST" action="{{ action([App\Http\Controllers\AdminDzijasController::class, 'edit'], $dzija->id) }}">
-                    @csrf
-                    @method('GET')
-                    <button>
-                    Labot
-                    </button>
-                    </form></td>
-                    <!-- <td> <input type="button" value="Labot" onclick="editDzija( {{ $dzija->id }} )"> </td> -->
-                </tr>
-                
-                @endforeach
-                </table>
-                <x-nav-link :href="route('admindzijas.create')">
-                    Izveidot jaunu 
-                </x-nav-link>
-                    
-                </div>
-            </div>
-        </div>
     </div>
+    <form method="POST" action="{{ action([App\Http\Controllers\IzstradajumsController::class, 'store']) }}">
+        @csrf
+
+        <!--Nosaukums -->
+        <div>
+            <label for="nosaukums" value="Nosaukums" ></label>
+
+            <input id="nosaukums" class="block mt-1 w-full" type="text" name="nosaukums" :value="old('nosaukums')" required autofocus />
+
+            <validation-error class="mb-4" :errors="$errors" title="nosaukums"/>            
+        </div>
+
+        <!-- Garums -->
+        <div>
+            <label for="gaums" value="Garums"></label>
+
+            <input id="garums" class="block mt-1 w-full" type="number" name="garums" :value="old('garums')" required autofocus />
+
+            <validation-error class="mb-4" :errors="$errors" title="garums"/>            
+        </div>
+
+        <!-- Apraksts -->
+        <div>
+            <label for="apraksts" value="Apraksts" ></label>
+
+            <textarea id="apraksts" class="block mt-1 w-full" type="text" name="apraksts" :value="old('apraksts')" required autofocus></textarea>
+
+            <validation-error class="mb-4" :errors="$errors" title="apraksts"/>            
+        </div>
+
+        <!-- Ražotājs -->
+        <div>
+            <label for="veids" value="Veids" ></label>
+            
+            <select id="veids" class="block mt-1 w-full" name="razotajs" :list='$veidi' :value="old('veids')" required autofocus></select>
+
+            <validation-error class="mb-4" :errors="$errors" title="veids"/>            
+        </div>  
+        <div class="flex items-center justify-end mt-4">
+            <button class="ml-4">
+                Izveidot
+            </button>
+        </div>
+    </form>
 </div>
-<!-- <script>
-function editDzija(dzijaID) {window.location.href="/dzija_edit/"+dzijaID+"/edit";}
-</script> -->
 </body>
 </html>

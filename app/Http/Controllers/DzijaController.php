@@ -63,7 +63,7 @@ class DzijaController extends Controller
         $dzija->apraksts = $request->apraksts;
         $dzija->razotajs()->associate(Razotajs::findOrFail($request->razotajs));
         $dzija->save();
-        return redirect()->route('dzija.index');        
+        return redirect()->route('dzijas.index');        
     }
 
     /**
@@ -75,10 +75,6 @@ class DzijaController extends Controller
     public function show($id)
     {
         $dzija = Dzija::findOrFail($id);
-        $reserved = 0;
-        if (session()->has('dzija') && in_array($id, session()->get('dzija'))) {
-            $reserved = 1;
-        }
         return view('dzija', compact('dzija'));
     }
 

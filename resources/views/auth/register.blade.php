@@ -7,6 +7,11 @@
         </x-slot>
 
         <!-- Validation Errors -->
+                <div class="container">
+                            <a href="{{ url('lang/en') }}" class="display-4 text-center" style="font-size: 0.8rem">EN</a>
+                        <a href="{{ url('lang/lv') }}" class="ml-4 text-center" style="font-size: 0.8rem">LV</a>              
+                    <br><br>
+               </div>
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <form method="POST" action="{{ route('register') }}">
@@ -47,11 +52,11 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('messages.Esat jau reģistrējies?') }}
                 </a>
 
                 <x-button class="ml-4">
-                    {{ __('Register') }}
+                   {{ __('messages.Reģistrēties') }}
                 </x-button>
             </div>
         </form>

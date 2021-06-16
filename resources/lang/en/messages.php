@@ -43,5 +43,8 @@ return [
 'VEIDI' => 'TYPE OF GARMENT',
 'Filtrēt dzijas' => 'Filter yarn',
 'Meklēt dzijas' => 'Search yarn',
-'Meklēt' => 'Search'
+'Meklēt' => 'Search',
+'MEKLĒŠANAS PANELIS' => 'SEARCH PANEL',
+'Meklējiet informāciju par dziju' => 'Search information about yarn',
+'Meklēšanas rezultāti' => 'Search results'
 ];

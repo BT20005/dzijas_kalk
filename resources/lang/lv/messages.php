@@ -43,5 +43,8 @@ return [
 'VEIDI' => 'VEIDI',
 'Filtrēt dzijas' => 'Filtrēt dzijas',
 'Meklēt dzijas' => 'Meklēt dzijas',
-'Meklēt' => 'Meklēt'
+'Meklēt' => 'Meklēt',
+'MEKLĒŠANAS PANELIS' => 'MEKLĒŠANAS PANELIS',
+'Meklējiet informāciju par dziju' => 'Meklējiet informāciju par dziju',
+'Meklēšanas rezultāti' => 'Meklēšanas rezultāti'
 ];

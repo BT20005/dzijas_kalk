@@ -50,9 +50,9 @@
 
         <!-- Nosaukums -->
         <div>
-            <label for="nosaukums" value="Nosaukums">ierakstiet izstrādājuma nosaukumu</label><br>
+            <label for="nosaukums" value="Nosaukums">Ierakstiet izstrādājuma nosaukumu</label><br>
 
-            <input id="nosaukums" class="block mt-1 w-full" type="text" name="nosaukums" required autofocus :value="old(nosaukums)"/>
+            <input id="nosaukums" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="text" name="nosaukums" required autofocus :value="old(nosaukums)"/>
 
             <validation-error class="mb-4" :errors="$errors" title="n"/>          
         </div>

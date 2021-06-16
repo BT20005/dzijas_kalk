@@ -45,41 +45,53 @@
                 </div>
             @endif
     </div>
-    <form method="POST" action="{{ action([App\Http\Controllers\IzstradajumsController::class, 'store']) }}">
+    <form method="POST" action="{{ action([App\Http\Controllers\AdminIzstradajumiController::class, 'store']) }}">
         @csrf
 
         <!--Nosaukums -->
         <div>
-            <label for="nosaukums" value="Nosaukums" ></label>
+            <label for="nosaukums" value="Nosaukums" >Izstrādājuma nosaukums: </label>
 
-            <input id="nosaukums" class="block mt-1 w-full" type="text" name="nosaukums" :value="old('nosaukums')" required autofocus />
+            <input id="nosaukums" class="block mt-1 w-full" type="text" name="nosaukums" :value="old(nosaukums)" required autofocus />
 
-            <validation-error class="mb-4" :errors="$errors" title="nosaukums"/>            
+            <validation-error class="mb-4" :errors="$errors" title="n"/>            
+        </div>
+
+        <!-- Apraksts -->
+        <div>
+            <label for="apraksts" value="Apraksts" >Izstrādājuma apraksts(nav obligāts):</label>
+
+            <textarea id="apraksts" class="block mt-1 w-full" type="text" name="apraksts" :value="old('apraksts')" required autofocus></textarea>
+         
+        </div>
+
+         <!-- izmers -->
+         <div>
+            <label for="izmers" value="Izmers">Izstrādājuma izmērs: </label>
+
+            <input id="izmers" class="block mt-1 w-full" type="text" name="izmers" :value="old('izmers')" required autofocus />
+
+            <validation-error class="mb-4" :errors="$errors" title="izmers"/>            
         </div>
 
         <!-- Garums -->
         <div>
-            <label for="gaums" value="Garums"></label>
+            <label for="gaums" value="Garums">Izstrādājuma garums: </label>
 
             <input id="garums" class="block mt-1 w-full" type="number" name="garums" :value="old('garums')" required autofocus />
 
             <validation-error class="mb-4" :errors="$errors" title="garums"/>            
         </div>
 
-        <!-- Apraksts -->
+        <!-- Veids -->
         <div>
-            <label for="apraksts" value="Apraksts" ></label>
-
-            <textarea id="apraksts" class="block mt-1 w-full" type="text" name="apraksts" :value="old('apraksts')" required autofocus></textarea>
-
-            <validation-error class="mb-4" :errors="$errors" title="apraksts"/>            
-        </div>
-
-        <!-- Ražotājs -->
-        <div>
-            <label for="veids" value="Veids" ></label>
+            <label for="veids" value="Veids" >Izstrādājuma veids: </label>
             
-            <select id="veids" class="block mt-1 w-full" name="razotajs" :list='$veidi' :value="old('veids')" required autofocus></select>
+            <select id="veids" class="block mt-1 w-full" name="razotajs" :list='$veidi' :value="old('veids')" required autofocus>
+            @foreach ($veidi as $veids) 
+            <option value='{{$veids->id}}'>{{$veids->nosaukums}}</option>
+            @endforeach
+            </select>
 
             <validation-error class="mb-4" :errors="$errors" title="veids"/>            
         </div>  

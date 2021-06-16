@@ -93,10 +93,10 @@ class AdminDzijasController extends Controller
     {
         if (Gate::allows('is-admin')) {
         $rules = array(
-            'nosaukums' => 'required|string|min:2|max:50|unique:dzija',
+            'nosaukums' => 'required|string|min:2|max:50|unique:dzijas',
             'apraksts' => 'nullable|string',
             'garums' => 'required|digits:4|integer|max:9999',
-            'razotajs' => 'required|exists:razotajs_id',
+            'razotajs' => 'required|exists:razotajs,id',
         );        
         $this->validate($request, $rules); 
         
@@ -104,7 +104,7 @@ class AdminDzijasController extends Controller
         $dzija->nosaukums = $request->nosaukums;
         $dzija->apraksts = $request->apraksts;
         $dzija->garums = $request->garums;
-        $dzija->veids()->associate(Razotajs::findOrFail($request->razotajs));
+        $dzija->razotajs()->associate(Razotajs::findOrFail($request->razotajs));
         $dzija->save();        
         return redirect()->route('admindzijas.index');
     }

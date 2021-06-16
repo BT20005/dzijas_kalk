@@ -45,14 +45,14 @@
                 </div>
             @endif
     </div>
-    <form method="POST" action="{{ action([App\Http\Controllers\DzijaController::class, 'store']) }}">
+    <form method="POST" action="{{ action([App\Http\Controllers\AdminDzijasController::class, 'store']) }}">
         @csrf
 
         <!--Nosaukums -->
         <div>
             <label for="nosaukums" value="Nosaukums" >Dzijas nosaukums: </label>
 
-            <input id="nosaukums" class="block mt-1 w-full" type="text" name="nosaukums" :value="old('nosaukums')" required autofocus />
+            <input id="nosaukums" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="text" name="nosaukums" :value="old('nosaukums')" required autofocus />
 
             <validation-error class="mb-4" :errors="$errors" title="nosaukums"/>            
         </div>
@@ -61,7 +61,7 @@
         <div>
             <label for="gaums" value="Garums">Dzijas vienības garums: </label>
 
-            <input id="garums" class="block mt-1 w-full" type="number" name="garums" :value="old('garums')" required />
+            <input id="garums" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" type="number" name="garums" :value="old('garums')" required />
 
             <validation-error class="mb-4" :errors="$errors" title="garums"/>            
         </div>
@@ -79,7 +79,11 @@
         <div>
             <label for="razotajs" value="Ražotājs" >Ražotājs: </label>
             
-            <select id="razotajs" class="block mt-1 w-full" name="razotajs" :list='$razotaji' :value="old('razotajs')"></select>
+            <select id="razotajs" class="block mt-1 w-full" name="razotajs" :list='$razotaji' :value="old('razotajs')">
+            @foreach ($razotaji as $razotajs) 
+            <option value='{{$razotajs->id}}'>{{$razotajs->nosaukums}}</option>
+            @endforeach
+            </select>
 
             <validation-error class="mb-4" :errors="$errors" title="razotajs"/>            
         </div>  

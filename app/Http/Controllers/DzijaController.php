@@ -56,7 +56,7 @@ class DzijaController extends Controller
             'nosaukums' => 'required|string|min:2|max:191',
             'garums' => 'required|digits:4|integer|max:9999',
             'apraksts' => 'nullable|string',
-            'razotajs' => 'required|exists:razotajs_id',
+            'razotajs' => 'required|exists:razotajs,id',
         );        
         $this->validate($request, $rules); 
         
@@ -172,17 +172,29 @@ class DzijaController extends Controller
 //
 //        return view('dzijas', array('dzijas' => $query->orderBy('nosaukums')->get()));        
 //    }
-    // AJAX view
-        public function showSearch() 
-        {
-            return view('search');
-        }
+//    // AJAX view
+//        public function showSearch() 
+//        {
+//            return view('search');
+//        }
+//
+//        // AJAX search
+//        public function search(Request $request) 
+//        {
+//            return Dzija::where('nosaukums', 'LIKE', '%'.$request->get('search').'%')
+//                    ->orWhere('apraksts', 'LIKE', '%'.$request->get('search').'%')->get();
+//        }
+    public function search(Request $request) {
+        // get the search term
+        $text = $request->input('text');
 
-        // AJAX search
-        public function search(Request $request) 
-        {
-            return Dzija::where('nosaukums', 'LIKE', '%'.$request->get('search').'%')
-                    ->orWhere('apraksts', 'LIKE', '%'.$request->get('search').'%')->get();
-        }
+        // search the members table
+        $dzijas = DB::table('dzijas')->where('nosaukums', 'Like', $text)
+                ->orWhere('apraksts', 'Like', $text)->get();
+
+
+        // return the results
+        return response()->json($dzijas);
+    }
 }
 

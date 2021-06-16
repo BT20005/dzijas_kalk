@@ -85,13 +85,57 @@
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-800  text-m">
-                                    <a href="{{ url('/kalkulacijas') }}">
-                                    {{ __('messages.Ja vēlies uzzināt cik dzijas nepieciešams tavam iecerētajam džemperim, cepurei vai zeķēm. Šī ir īstā vieta!') }}
-                                    </a>
+                                <form form method="POST" action="{{ action([App\Http\Controllers\KalkulacijasController::class, 'filter']) }}"> 
+                                        @csrf
+                                        <div>
+                                    <h3>Izvēlieties izstrādājumu un dziju:</h3>
+                                    </div>
+                                        <table class="border border-dark">
+                                        <tr> 
+                                            <td>1. Dzijas nosaukums:</td>
+                                            <td class="form-group">
+                                            <select id="dzija" class="form-control input_lg dynamic" name="dzija" :list='$dzijas' :value="old('dzija')">
+                                            @foreach ( $dzijas as $item )
+                                                <option value='{{$item->id}}'>{{$item->nosaukums}}</option>
+                                                @endforeach 
+                                            </select>
+                                            <script>
+                                                $(document).ready(function() {
+                                                    $('#dzija').multiselect({
+                                                                nonSelectedText:"Izvēlies dziju",
+                                                            });
+                                                });
+                                            </script>
+                                            <validation-error class="mb-4" :errors="$errors" title="dzija"/>
+                                            </td>
+                                        </tr>
+                                        <tr> 
+                                            <td>2. Izstrādājuma veids:</td>
+                                            <td class="form-group">
+                                            <select id="izstradajums" class="form-control input_lg dynamic" name="veids" :list='$izstradajumi' :value="old('izstradajums')">
+                                            @foreach ($veidi as $item) 
+                                                <option value='{{$item->id}}'>{{$item->nosaukums}}</option>
+                                                @endforeach
+                                            </select>
+                                            </td>
+                                        </tr>
+                                        <tr> 
+                                            <td>3. Izstrādājuma izmērs:</td>
+                                            <td class="form-group">
+                                            <select id="izmers" class="form-control input_lg dynamic" name="izmers" :list='$izmeri' :value="old('izmers')">
+                                            @foreach ($izmeri as $item) 
+                                                <option value='{{$item->id}}'>{{$item->izmers}}</option>
+                                                @endforeach
+                                            </select>
+                                            </td>
+                                        </tr>
+                                        </table>  
+                                    <div class="mt-2 text-gray-800  text-m">
+                                    <input class="mt-2 text-gray-800  text-m" type="submit" name="submit" value="Aprēķināt">
+                                    </div>
+                                    </form> 
                                 </div>
-                                <x-nav-link :href="route('dzijas.filter')" :active="request()->routeIs('dzijas.filter')">
-                                        {{ __('Aprēķināt') }}
-                                    </x-nav-link>
+                                
                                 <div>
                             </div>
                         </div>
@@ -121,5 +165,32 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                jQuery('select[name="veids"]').on('change', function () {
+                    var veidsID = jQuery(this).val();
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    if(veidsID)
+                    {
+                    jQuery.ajax({
+                        type: "GET",
+                        url: '/kalkulacijas/' +veidsID,
+                        dataType: { id: "json", _token: CSRF_TOKEN },
+                        success: function (data) {
+                            jQuery('select[name="izmers"]').empty();  //noņemt pēdējo izvēlēto
+                            jQuery.each(data, function(key,value){
+                                $('select[name="izmers"]').append('<option value="'+ key +'">' + value +'</option>');
+                            });
+                        }
+                    });
+                    }
+                    else
+                        {
+                         $('select[name="izmers"]'.empty()); //attīrīt lauku
+                        }
+                });
+            });        
+    </script>        
     </body>
 </html>
+       

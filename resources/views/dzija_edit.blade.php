@@ -24,7 +24,7 @@
                     <h3>Atjaunojam ierakstu dzijai</h3><b>{{ $dzija->nosaukums  }}</b>
 
                     <form method="POST" action="{{ action([App\Http\Controllers\AdminDzijasController::class, 'update'], $dzija->id)}}">
-                        @csrf
+                    @csrf
                     @method('PUT')
                     <input type="hidden" name="dzija_id" value="{{ $dzija->id }}">
                     <br>
@@ -49,7 +49,7 @@
                 <br>
                 <label for='apraksts'>Apraksts: </label>
                 <input type='text' size='150' id='apraksts' name='apraksts'
-                value='{{ old('apraksts', $dzija->apraksts) }} 'class="form-control @error('apraksts') is-invalid           @enderror"></input>
+                value='{{ old('apraksts', $dzija->apraksts) }} 'class="form-control @error('apraksts') is-invalid @enderror"></input>
                 @error('apraksts')
                 <span class="invalid-feedback">
                 <strong>{{ $message }}</strong>

@@ -13,9 +13,8 @@ use function view;
 class AdminDzijasController extends Controller
 {
        public function __construct() {
-       //$this->middleware('auth.admin')->only(['edit']);
        //$this->middleware('auth.admin')->only(['edit', 'create', 'store', 'destroy']);
-        //$this->middleware('auth', ['only'=>'edit']);
+       //$this->middleware('auth.admin')->only(['edit']);
     //only Admins have access to the following methods
         // $this->middleware('auth.admin')->only(['create', 'store']);
          // only authenticated users have access to the methods of the controller

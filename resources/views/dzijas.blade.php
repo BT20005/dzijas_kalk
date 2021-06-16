@@ -26,7 +26,7 @@
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
                         
-                    <a href="{{ url('/') }}" class="text-sm text-gray-700 underline">SĀKUMS</a>
+                    <a href="{{ url('/') }}" class="text-sm text-gray-700 underline">{{ __('messages.SĀKUMS')}}</a>
                         <div>{{ Auth::user()->name }}</div>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -34,20 +34,30 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('messages.Iziet') }}
                             </x-dropdown-link>
                         </form>
-                    @else
+                    <div class="container">
+                        <a href="{{ url('lang/en') }}" class="display-4 text-center" style="font-size: 0.8rem">EN</a>
+                        <a href="{{ url('lang/lv') }}" class="ml-4 text-center" style="font-size: 0.8rem">LV</a>              
+                    <br><br>
+                    </div>
+                        @else
+                    <div class="container">
+                        <a href="{{ url('lang/en') }}" class="display-4 text-center" style="font-size: 0.8rem">EN</a>
+                        <a href="{{ url('lang/lv') }}" class="ml-4 text-center" style="font-size: 0.8rem">LV</a>              
+                    <br><br>
+                    </div>
                     <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class=" ml-4 bi bi-facebook" viewBox="0 0 16 16">
                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
                     </svg>
-                   <a href="{{ route('auth.social', 'facebook') }}" title="Facebook" class="ml-2 text-sm text-gray-700 underline">Login with FB</a>               
+                   <a href="{{ route('auth.social', 'facebook') }}" title="Facebook" class="ml-2 text-sm text-gray-700 underline">{{ __('messages.Pieslēgties ar FB') }}</a>               
                     </div>
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">{{ __('messages.Pieslēgties') }}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">{{ __('messages.Reģistrēties') }}</a>
                         @endif
                     @endauth
                 </div>
@@ -60,7 +70,7 @@
                         <path d="M3.362 10.11c0 .926-.756 1.681-1.681 1.681S0 11.036 0 10.111C0 9.186.756 8.43 1.68 8.43h1.682v1.68zm.846 0c0-.924.756-1.68 1.681-1.68s1.681.756 1.681 1.68v4.21c0 .924-.756 1.68-1.68 1.68a1.685 1.685 0 0 1-1.682-1.68v-4.21zM5.89 3.362c-.926 0-1.682-.756-1.682-1.681S4.964 0 5.89 0s1.68.756 1.68 1.68v1.682H5.89zm0 .846c.924 0 1.68.756 1.68 1.681S6.814 7.57 5.89 7.57H1.68C.757 7.57 0 6.814 0 5.89c0-.926.756-1.682 1.68-1.682h4.21zm6.749 1.682c0-.926.755-1.682 1.68-1.682.925 0 1.681.756 1.681 1.681s-.756 1.681-1.68 1.681h-1.681V5.89zm-.848 0c0 .924-.755 1.68-1.68 1.68A1.685 1.685 0 0 1 8.43 5.89V1.68C8.43.757 9.186 0 10.11 0c.926 0 1.681.756 1.681 1.68v4.21zm-1.681 6.748c.926 0 1.682.756 1.682 1.681S11.036 16 10.11 16s-1.681-.756-1.681-1.68v-1.682h1.68zm0-.847c-.924 0-1.68-.755-1.68-1.68 0-.925.756-1.681 1.68-1.681h4.21c.924 0 1.68.756 1.68 1.68 0 .926-.756 1.681-1.68 1.681h-4.21z"/>
                         </g>
                         <div class="ml-4 text-xl leading-7 font-semibold  text-danger-900 dark:text-grey"></div>
-                        <h1>DZIJAS</h1>
+                        <h1>{{ __('messages.DZIJA') }}</h1>
                     </svg>
                 </div>
 
@@ -70,7 +80,7 @@
                             <div class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="red" class="bi bi-slack" viewBox="0 0 16 16">
                                 <path d="M3.362 10.11c0 .926-.756 1.681-1.681 1.681S0 11.036 0 10.111C0 9.186.756 8.43 1.68 8.43h1.682v1.68zm.846 0c0-.924.756-1.68 1.681-1.68s1.681.756 1.681 1.68v4.21c0 .924-.756 1.68-1.68 1.68a1.685 1.685 0 0 1-1.682-1.68v-4.21zM5.89 3.362c-.926 0-1.682-.756-1.682-1.681S4.964 0 5.89 0s1.68.756 1.68 1.68v1.682H5.89zm0 .846c.924 0 1.68.756 1.68 1.681S6.814 7.57 5.89 7.57H1.68C.757 7.57 0 6.814 0 5.89c0-.926.756-1.682 1.68-1.682h4.21zm6.749 1.682c0-.926.755-1.682 1.68-1.682.925 0 1.681.756 1.681 1.681s-.756 1.681-1.68 1.681h-1.681V5.89zm-.848 0c0 .924-.755 1.68-1.68 1.68A1.685 1.685 0 0 1 8.43 5.89V1.68C8.43.757 9.186 0 10.11 0c.926 0 1.681.756 1.681 1.68v4.21zm-1.681 6.748c.926 0 1.682.756 1.682 1.681S11.036 16 10.11 16s-1.681-.756-1.681-1.68v-1.682h1.68zm0-.847c-.924 0-1.68-.755-1.68-1.68 0-.925.756-1.681 1.68-1.681h4.21c.924 0 1.68.756 1.68 1.68 0 .926-.756 1.681-1.68 1.681h-4.21z"/></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('/') }}" class="underline text-red-900 dark:text-gray">UZ SĀKUMU</a></div>
+                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ url('/') }}" class="underline text-red-900 dark:text-gray">{{ __('messages.UZ SĀKUMU') }}</a></div>
                             </div>
 
                             <div class="ml-12">
@@ -98,7 +108,7 @@
                     </div>
                     <div> 
                     @can ('is-admin')
-                    <a href="{{ url('/admin') }}" class="text-sm text-gray-500 underline">ADMINISTRĀCIJAS PANELIS</a>
+                    <a href="{{ url('/admin') }}" class="text-sm text-gray-500 underline">{{ __('messages.ADMINISTRĀCIJAS PANELIS') }}</a>
                     @endcan
                     </div>
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -30,7 +31,6 @@
             });
             FB.AppEvents.logPageView();
           };
-
           (function(d, s, id){
              var js, fjs = d.getElementsByTagName(s)[0];
              if (d.getElementById(id)) {return;}
@@ -39,12 +39,7 @@
              fjs.parentNode.insertBefore(js, fjs);
            }(document, 'script', 'facebook-jssdk'));
         </script>
-<!--        <div class="ml-4 text-xl leading-7 font-semibold  text-danger-900 dark:text-grey">
-                        <a class="display-4 text-center" style="font-size: 0.8rem">EN</a>
-                        <a class="ml-4 text-center" style="font-size: 0.8rem">LV</a>              
-                    <br><br>
-        </div>-->
-
+               
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 light:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -67,7 +62,8 @@
                     <br><br>
                 </div>
                     @else
-                    
+  
+                
                     <div class="container">
                         <a href="{{ url('lang/en') }}" class="display-4 text-center" style="font-size: 0.8rem">EN</a>
                         <a href="{{ url('lang/lv') }}" class="ml-4 text-center" style="font-size: 0.8rem">LV</a>              
@@ -86,11 +82,13 @@
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">{{ __('messages.Reģistrēties') }}</a>
                         @endif
                     @endauth
+                     
                 </div>
             @endif
-                     
+         
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
+
                     <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto text-gray-700 sm:h-20">
                         <g clip-path="url(#clip0)" fill="#EF3B2D">
                         <path d="M8 16a.5.5 0 0 1-.5-.5v-1.293l-.646.647a.5.5 0 0 1-.707-.708L7.5 12.793v-1.086l-.646.647a.5.5 0 0 1-.707-.708L7.5 10.293V8.866l-1.236.713-.495 1.85a.5.5 0 1 1-.966-.26l.237-.882-.94.542-.496 1.85a.5.5 0 1 1-.966-.26l.237-.882-1.12.646a.5.5 0 0 1-.5-.866l1.12-.646-.884-.237a.5.5 0 1 1 .26-.966l1.848.495.94-.542-.882-.237a.5.5 0 1 1 .258-.966l1.85.495L7 8l-1.236-.713-1.849.495a.5.5 0 1 1-.258-.966l.883-.237-.94-.542-1.85.495a.5.5 0 0 1-.258-.966l.883-.237-1.12-.646a.5.5 0 1 1 .5-.866l1.12.646-.237-.883a.5.5 0 0 1 .966-.258l.495 1.849.94.542-.236-.883a.5.5 0 0 1 .966-.258l.495 1.849 1.236.713V5.707L6.147 4.354a.5.5 0 1 1 .707-.708l.646.647V3.207L6.147 1.854a.5.5 0 1 1 .707-.708l.646.647V.5a.5.5 0 0 1 1 0v1.293l.647-.647a.5.5 0 1 1 .707.708L8.5 3.207v1.086l.647-.647a.5.5 0 1 1 .707.708L8.5 5.707v1.427l1.236-.713.495-1.85a.5.5 0 1 1 .966.26l-.236.882.94-.542.495-1.85a.5.5 0 1 1 .966.26l-.236.882 1.12-.646a.5.5 0 0 1 .5.866l-1.12.646.883.237a.5.5 0 1 1-.26.966l-1.848-.495-.94.542.883.237a.5.5 0 1 1-.26.966l-1.848-.495L9 8l1.236.713 1.849-.495a.5.5 0 0 1 .259.966l-.883.237.94.542 1.849-.495a.5.5 0 0 1 .259.966l-.883.237 1.12.646a.5.5 0 0 1-.5.866l-1.12-.646.236.883a.5.5 0 1 1-.966.258l-.495-1.849-.94-.542.236.883a.5.5 0 0 1-.966.258L9.736 9.58 8.5 8.866v1.427l1.354 1.353a.5.5 0 0 1-.707.708l-.647-.647v1.086l1.354 1.353a.5.5 0 0 1-.707.708l-.647-.647V15.5a.5.5 0 0 1-.5.5z"/>
@@ -98,6 +96,7 @@
                         <div class="ml-4 text-xl leading-7 font-semibold  text-danger-900 dark:text-grey"></div>
                         <h1>{{ __('messages.DZIJAS KALKULATORS') }}</h1>
                     </svg>
+  
                 </div>
                 
                 
@@ -173,7 +172,15 @@
                             </svg>
                         </div>
                     </div>
-                    <div> 
+                    
+                    
+                    <div>
+                        <div class="text-sm text-gray-500 underline">     
+                <x-nav-link :href="route('dzijas.search')" :active="request()->routeIs('dzijas.search')">
+                                        {{ __('messages.Meklēt') }}
+                </x-nav-link>
+            </div>
+                        
                     @can ('is-admin')
                     <a href="{{ url('/admin') }}" class="text-sm text-gray-500 underline">{{ __('messages.ADMINISTRĀCIJAS PANELIS') }}</a>
                     @endcan
@@ -186,3 +193,4 @@
         </div>
     </body>
 </html>
+

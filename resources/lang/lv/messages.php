@@ -40,5 +40,11 @@ return [
 'Ražotājs' => 'Ražotājs',
 'ADMINISTRĀCIJAS PANELIS' => 'ADMINISTRĀCIJAS PANELIS',
 'RAŽOTĀJI' => 'RAŽOTĀJI',
- 'VEIDI' => 'VEIDI'
+'VEIDI' => 'VEIDI',
+'Filtrēt dzijas' => 'Filtrēt dzijas',
+'Meklēt dzijas' => 'Meklēt dzijas',
+'Meklēt' => 'Meklēt',
+'MEKLĒŠANAS PANELIS' => 'MEKLĒŠANAS PANELIS',
+'Meklējiet informāciju par dziju' => 'Meklējiet informāciju par dziju',
+'Meklēšanas rezultāti' => 'Meklēšanas rezultāti'
 ];

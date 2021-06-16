@@ -5,21 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Dzija;
 use App\Models\Razotajs;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use function redirect;
+use function view;
 
 class DzijaController extends Controller
 {
-    // public function __construct() {
+    //public function __construct() {
     //     // only Admins have access to the following methods
-    //     $this->middleware('auth.admin')->only(['create', 'store']);
+        //$this->middleware('auth.admin')->only(['create', 'store']);
     //     // only authenticated users have access to the methods of the controller
-    //     $this->middleware('auth');
-    // }
+       // $this->middleware('auth');
+     //}
         
     /**
      * Dziju saraksts.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -30,7 +33,7 @@ class DzijaController extends Controller
     /**
      * Forma jaunas dzijas izveidei.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -44,7 +47,7 @@ class DzijaController extends Controller
     /**
      * Saglabāt jaunizveidotās dzijas.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return \Illuminate\Http\Responses
      */
     public function store(Request $request)
@@ -70,7 +73,7 @@ class DzijaController extends Controller
      * Attēlot.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -82,7 +85,7 @@ class DzijaController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -92,9 +95,9 @@ class DzijaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -105,69 +108,93 @@ class DzijaController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
         //
     }
     
-    public function showFilter() 
-    {      
-        $razotaji = Razotajs::all()->map(function ($razotajs) {
-            $razotajs->value = $razotajs->id;
-            return $razotajs;
-	   });
-        return view('dzijas_filter', compact('razotaji'));        
-    }
-    
-    public function filter(Request $request)
-    {
-             
-        if ($request->garums_from != null) {
-            $garums_from = $request->garums_from;
-            $rules = array(
-                'nosaukums' => 'nullable|string|min:2|max:191',
-                'garums_from' => 'nullable|digits:4|integer|max:9999',
-                'garums_until' => 'nullable|digits:4|integer|max:9999|gte:'.$garums_from,
-                'razotajs' => 'nullable|exists:razotajs,id',
-            );   
-        }
-        else {
-            $rules = array(
-                'nosaukums' => 'nullable|string|min:2|max:191',
-                'garums_from' => 'nullable|digits:4|integer|max:9999',
-                'garums_until' => 'nullable|digits:4|integer|max:9999',
-                'razotajs' => 'nullable|exists:razotajs,id',
-            );   
-        }
-            
-        $this->validate($request, $rules); 
+//    public function showFilter() 
+//    {      
+//        $razotaji = Razotajs::all()->map(function ($razotajs) {
+//            $razotajs->value = $razotajs->id;
+//            return $razotajs;
+//	   });
+//        return view('dzijas_filter', compact('razotaji'));        
+//    }
+//    
+//    public function filter(Request $request)
+//    {
+//             
+//        if ($request->garums_from != null) {
+//            $garums_from = $request->garums_from;
+//            $rules = array(
+//                'nosaukums' => 'nullable|string|min:2|max:191',
+//                'garums_from' => 'nullable|digits:4|integer|max:9999',
+//                'garums_until' => 'nullable|digits:4|integer|max:9999|gte:'.$garums_from,
+//                'razotajs' => 'nullable|exists:razotajs,id',
+//            );   
+//        }
+//        else {
+//            $rules = array(
+//                'nosaukums' => 'nullable|string|min:2|max:191',
+//                'garums_from' => 'nullable|digits:4|integer|max:9999',
+//                'garums_until' => 'nullable|digits:4|integer|max:9999',
+//                'razotajs' => 'nullable|exists:razotajs,id',
+//            );   
+//        }
+//            
+//        $this->validate($request, $rules); 
+//
+//        $query = Dzija::join('dzija_by_razotajs', 'dzija_by_razotajs.dzija_id', '=', 'dzija.id');
+//        if ($request->razotajs != null) {
+//            $query = $query->whereIn('dzija.razotajs_id',$request->razotajs);
+//        } 
+//
+//        if ($request->nosaukums != null) {
+//            $query = $query->where('dzijas.nosaukums', 'LIKE', '%'.$request->nosaukums.'%');
+//        }
+//
+//        if ($request->garums_from != null) {
+//            $query = $query->where('dzijas.garums', '>=', $request->garums_from);
+//        }
+//
+//        if ($request->garums_until != null) {
+//            $query = $query->where('dzijas.garums', '<=', $request->garums_until);
+//        }
+//
+//        if ($request->apraksts != null) {
+//            $query = $query->where('dzijas.apraksts', 'LIKE', '%'.$request->apraksts.'%');
+//        }
+//        
+//        $query = $query->select(DB::raw('distinct dzijas.*'));
+//
+//        return view('dzijas', array('dzijas' => $query->orderBy('nosaukums')->get()));        
+//    }
+//    // AJAX view
+//        public function showSearch() 
+//        {
+//            return view('search');
+//        }
+//
+//        // AJAX search
+//        public function search(Request $request) 
+//        {
+//            return Dzija::where('nosaukums', 'LIKE', '%'.$request->get('search').'%')
+//                    ->orWhere('apraksts', 'LIKE', '%'.$request->get('search').'%')->get();
+//        }
+    public function search(Request $request) {
+        // get the search term
+        $text = $request->input('text');
 
-        $query = Dzija::join('dzija_by_razotajs', 'dzija_by_razotajs.dzija_id', '=', 'dzija.id');
-        if ($request->razotajs != null) {
-            $query = $query->whereIn('dzija.razotajs_id',$request->razotajs);
-        } 
+        // search the members table
+        $dzijas = DB::table('dzijas')->where('nosaukums', 'Like', $text)
+                ->orWhere('apraksts', 'Like', $text)->get();
 
-        if ($request->nosaukums != null) {
-            $query = $query->where('dzijas.nosaukums', 'LIKE', '%'.$request->nosaukums.'%');
-        }
 
-        if ($request->garums_from != null) {
-            $query = $query->where('dzijas.garums', '>=', $request->garums_from);
-        }
-
-        if ($request->garums_until != null) {
-            $query = $query->where('dzijas.garums', '<=', $request->garums_until);
-        }
-
-        if ($request->apraksts != null) {
-            $query = $query->where('dzijas.apraksts', 'LIKE', '%'.$request->apraksts.'%');
-        }
-        
-        $query = $query->select(DB::raw('distinct dzijas.*'));
-
-        return view('dzijas', array('dzijas' => $query->orderBy('nosaukums')->get()));        
+        // return the results
+        return response()->json($dzijas);
     }
 }
 

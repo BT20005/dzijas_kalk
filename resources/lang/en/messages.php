@@ -40,5 +40,11 @@ return [
 'Ražotājs' => 'Manufacturer',
 'ADMINISTRĀCIJAS PANELIS' => 'ADMINISTRATION PANEL',
 'RAŽOTĀJI' => 'MANUFACTURERS',
- 'VEIDI' => 'TYPE OF GARMENT'
+'VEIDI' => 'TYPE OF GARMENT',
+'Filtrēt dzijas' => 'Filter yarn',
+'Meklēt dzijas' => 'Search yarn',
+'Meklēt' => 'Search',
+'MEKLĒŠANAS PANELIS' => 'SEARCH PANEL',
+'Meklējiet informāciju par dziju' => 'Search information about yarn',
+'Meklēšanas rezultāti' => 'Search results'
 ];

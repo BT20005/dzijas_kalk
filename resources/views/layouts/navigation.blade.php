@@ -13,6 +13,13 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+<!--                    <div :href="route('dzijas.filter')" :active="request()->routeIs('dzijas.filter')">
+                        {{ __('messages.Filtrēt dzijas') }}
+                    </div>-->
+                     <x-nav-link :href="route('dzijas.search')" :active="request()->routeIs('dzijas.search')">
+                        {{ __('messages.Meklēt dzijas') }}
+                     </x-nav-link>
+                    
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
@@ -64,15 +71,19 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+               <x-responsive-nav-link  :href="route('dzijas.search')" :active="request()->routeIs('dzijas.search')">
+                {{ __('messages.Meklēt dzijas') }}
+              </x-responsive-nav-link>
+            
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
-        <div class="container">
-                            <a href="{{ url('lang/en') }}" class="display-4 text-center" style="font-size: 0.8rem">EN</a>
-                        <a href="{{ url('lang/lv') }}" class="ml-4 text-center" style="font-size: 0.8rem">LV</a>              
-                    <br><br>
-               </div>
+       <div class="container">
+                <a href="{{ url('lang/en') }}" class="display-4 text-center" style="font-size: 0.8rem">EN</a>
+                <a href="{{ url('lang/lv') }}" class="ml-4 text-center" style="font-size: 0.8rem">LV</a>              
+                <br><br>
+        </div>
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">

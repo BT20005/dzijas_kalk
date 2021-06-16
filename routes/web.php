@@ -7,6 +7,7 @@ use App\Http\Controllers\VeidsController;
 use App\Http\Controllers\RazotajsController;
 use App\Http\Controllers\DzijaController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\IzstradajumsController;
 use App\Http\Controllers\AdminIzstradajumiController;
 use App\Http\Controllers\AdminDzijasController;
@@ -53,8 +54,9 @@ Route::resource('dzijas', DzijaController::class);
 Route::resource('izstradajumi', IzstradajumsController::class);
 Route::resource('adminizstradajumi', AdminIzstradajumiController::class);
 Route::resource('admindzijas', AdminDzijasController::class);
-Route::resource('kalkulacijas', KalkulacijasController::class);
+//Route::resource('search', DzijaController::class);
 
+Route::resource('kalkulacijas', KalkulacijasController::class);
 
 Route::get('kalkulacijas/filter', [KalkulacijasController::class, 'showFilter'])->name('dzijas.filter');
 Route::post('dzijas/filter', [KalkulacijasController::class, 'filter']);
@@ -69,12 +71,27 @@ Route::resource('admindzijas', AdminDzijasController::class, ['except' => ['inde
 Route::get('admindzijas/veids/{id}', [AdminDzijasController::class, 'index']);
 
 
+//Route::get('dzijas/filter', [DzijaController::class, 'showFilter'])->name('dzijas.filter');
+//Route::post('dzijas/filter', [DzijaController::class, 'filter']);
+
 
 Route::get('/social-auth/{provider}', [AuthSocialController::class, 'redirectToProvider'])->name('auth.social');
 
 Route::get('/social-auth/{provider}/callback', [AuthSocialController::class, 'handleProviderCallback'])->name('auth.social.callback');
 
 Route::get('lang/{locale}', LanguageController::class);
+
+Route::get('/search', [SearchController::class, 'index'])->name('dzijas.search');
+Route::get('/search/action', [SearchController::class, 'action'])->name('search.action');
+
+
+
+//Route::get('dzijas/search',[DzijaController::class, 'showSearch'])->name('dzijas.search');
+//Route::post('dzijas/search',[DzijaController::class, 'search']);
+
+//Route::get('dzijas/search', 'DzijaController@search')->name('dzijas.search');
+
+//Route:get('/dzijas/search', ['uses'=>'DzijaController@search', 'as'=>'dzijas/search']);
 
 //Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
 
